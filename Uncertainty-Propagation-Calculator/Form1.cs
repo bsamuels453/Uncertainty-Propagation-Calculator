@@ -39,5 +39,17 @@ namespace Uncertainty_Propagation_Calculator{
             prc.StartInfo.FileName = Directory.GetCurrentDirectory() + "/Output";
             prc.Start();
         }
+
+        private void CalculateBut_Click(object sender, EventArgs e) {
+
+        }
+
+        private void SaveKeyButClick(object sender, EventArgs e) {
+            string key = WolframApiTextBox.Text;
+            var sw = new StreamWriter("apikey.txt", false);
+            sw.Write(key);
+            sw.Close();
+            KeySavedLabel.Visible = true;
+        }
     }
 }

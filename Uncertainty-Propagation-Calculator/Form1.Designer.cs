@@ -216,6 +216,7 @@
             this.CalculateBut.TabIndex = 12;
             this.CalculateBut.Text = "Calculate";
             this.CalculateBut.UseVisualStyleBackColor = true;
+            this.CalculateBut.Click += new System.EventHandler(this.CalculateBut_Click);
             // 
             // OpenOutputImageLocBut
             // 
@@ -351,6 +352,7 @@
             // 
             // CheckValidityBut
             // 
+            this.CheckValidityBut.Enabled = false;
             this.CheckValidityBut.Location = new System.Drawing.Point(178, 23);
             this.CheckValidityBut.Name = "CheckValidityBut";
             this.CheckValidityBut.Size = new System.Drawing.Size(86, 25);
@@ -366,6 +368,7 @@
             this.SaveKeyBut.TabIndex = 20;
             this.SaveKeyBut.Text = "Save Key";
             this.SaveKeyBut.UseVisualStyleBackColor = true;
+            this.SaveKeyBut.Click += new System.EventHandler(this.SaveKeyButClick);
             // 
             // ProgressBar
             // 
