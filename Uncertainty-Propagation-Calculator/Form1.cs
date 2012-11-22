@@ -17,14 +17,6 @@ namespace Uncertainty_Propagation_Calculator {
 
             VariableEntryGrid.UpdateCellErrorText(0, 0);
             VariableEntryGrid.UpdateCellErrorText(0, 0);
-            //dataGridView1[0, 0].ErrorText = "no";
-
         }
-
-        private void dataGridView1_CellErrorTextNeeded(object sender, DataGridViewCellErrorTextNeededEventArgs e) {
-            e.ErrorText = "hello";
-        }
-
-
     }
 }

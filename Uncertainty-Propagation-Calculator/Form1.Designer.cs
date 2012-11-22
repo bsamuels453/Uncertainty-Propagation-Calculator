@@ -101,7 +101,6 @@
             this.VariableEntryGrid.ShowEditingIcon = false;
             this.VariableEntryGrid.Size = new System.Drawing.Size(372, 117);
             this.VariableEntryGrid.TabIndex = 3;
-            this.VariableEntryGrid.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.dataGridView1_CellErrorTextNeeded);
             // 
             // VariableName
             // 
