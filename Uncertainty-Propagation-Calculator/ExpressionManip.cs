@@ -156,14 +156,13 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         /// <summary>
-        /// Takes an equation and converts any integer-constants to floating constants.
-        /// For example, converts "y=2*x+5" to "y=2.0*x+5.0"
+        ///   Takes an equation and converts any integer-constants to floating constants. For example, converts "y=2*x+5" to "y=2.0*x+5.0"
         /// </summary>
-        /// <param name="equation"></param>
-        /// <returns></returns>
-        public static string ConvertEquationIntsToFloats(string equation) {
+        /// <param name="equation"> </param>
+        /// <returns> </returns>
+        public static string ConvertEquationIntsToFloats(string equation){
             bool hasDecimal = false;
-            for (int si = 1; si < equation.Count(); si++) {
+            for (int si = 1; si < equation.Count(); si++){
                 if (char.IsDigit(equation[si]))
                     continue;
 
@@ -178,12 +177,12 @@ namespace Uncertainty_Propagation_Calculator{
                     )
                     continue;
 
-                if (equation[si] == '.') {
+                if (equation[si] == '.'){
                     hasDecimal = true;
                     continue;
                 }
 
-                if (hasDecimal) {
+                if (hasDecimal){
                     hasDecimal = false;
                     continue;
                 }
@@ -191,33 +190,32 @@ namespace Uncertainty_Propagation_Calculator{
                 equation = equation.Insert(si, ".0");
                 hasDecimal = true;
             }
-            if (char.IsDigit(equation.Last()) && !hasDecimal) {
+            if (char.IsDigit(equation.Last()) && !hasDecimal){
                 equation = equation.Insert(equation.Count(), ".0");
             }
             return equation;
         }
 
         /// <summary>
-        /// Converts a set of symbols (variables) into the provided aliases. Symbol and alias names are provided through Dictionary(string,string),
-        /// where the key represents the symbol and the value represents its alias.
+        ///   Converts a set of symbols (variables) into the provided aliases. Symbol and alias names are provided through Dictionary(string,string), where the key represents the symbol and the value represents its alias.
         /// </summary>
-        /// <param name="symbolAliases"></param>
-        /// <param name="equation"></param>
-        /// <returns></returns>
-        public static string ConvertSymbolsIntoAliases(Dictionary<string, string> symbolAliases, string equation) {
+        /// <param name="symbolAliases"> </param>
+        /// <param name="equation"> </param>
+        /// <returns> </returns>
+        public static string ConvertSymbolsIntoAliases(Dictionary<string, string> symbolAliases, string equation){
             //generate the equation with all of our new variable names
-            var aliasEquation = (string)equation.Clone();
-            
+            var aliasEquation = (string) equation.Clone();
+
             //todo: get rid of 3 character limitation on symbol names
-            for (int i = 0; i < aliasEquation.Count(); i++) {
+            for (int i = 0; i < aliasEquation.Count(); i++){
                 int splitLen = 3;
-                if (i + 3 > aliasEquation.Count()) {
+                if (i + 3 > aliasEquation.Count()){
                     splitLen = aliasEquation.Count() - i;
                 }
                 string split = aliasEquation.Substring(i, splitLen);
 
-                foreach (var reference in symbolAliases) {
-                    if (split.Contains(reference.Key)) {
+                foreach (var reference in symbolAliases){
+                    if (split.Contains(reference.Key)){
                         split = split.Replace(reference.Key, reference.Value);
                         aliasEquation = aliasEquation.Remove(i, splitLen);
                         aliasEquation = aliasEquation.Insert(i, split);
@@ -227,11 +225,11 @@ namespace Uncertainty_Propagation_Calculator{
             }
 
             //sanity check
-            foreach (var reference in symbolAliases) {
-                if (reference.Value.Count() != 1) {
+            foreach (var reference in symbolAliases){
+                if (reference.Value.Count() != 1){
                     throw new Exception("one of the aliases were longer than one character");
                 }
-                if (reference.Key == "l" || reference.Key == "o" || reference.Key == "g" || reference.Key == "n") {
+                if (reference.Key == "l" || reference.Key == "o" || reference.Key == "g" || reference.Key == "n"){
                     throw new Exception("cannot use letters l, o, g, or n");
                 }
             }
@@ -239,20 +237,20 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         /// <summary>
-        /// does the opposite of the method above this one
+        ///   does the opposite of the method above this one
         /// </summary>
-        /// <param name="symbolAliases"></param>
-        /// <param name="equation"></param>
-        /// <returns></returns>
-        public static string ConvertAliasesIntoSymbols(Dictionary<string, string> symbolAliases, string equation) {
-            string str = (string)equation.Clone();
+        /// <param name="symbolAliases"> </param>
+        /// <param name="equation"> </param>
+        /// <returns> </returns>
+        public static string ConvertAliasesIntoSymbols(Dictionary<string, string> symbolAliases, string equation){
+            string str = (string) equation.Clone();
 
             //xxx this method is bound by the 1 character alias limit
-            for (int chr = 0; chr < str.Count(); chr++) {
-                foreach (var reference in symbolAliases) {
+            for (int chr = 0; chr < str.Count(); chr++){
+                foreach (var reference in symbolAliases){
                     if (chr >= str.Count())
                         break;
-                    if (str[chr] == reference.Value[0]) {
+                    if (str[chr] == reference.Value[0]){
                         str = str.Remove(chr, 1);
                         str = str.Insert(chr, reference.Key);
                         chr += reference.Key.Count();
@@ -263,13 +261,12 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         /// <summary>
-        /// This method parses all the symbols in an equation, and associates a single-letter alias to each one.
-        /// Useful for formatting wolfram alpha input since it will shit itself if you give it variables that are multi-char.
+        ///   This method parses all the symbols in an equation, and associates a single-letter alias to each one. Useful for formatting wolfram alpha input since it will shit itself if you give it variables that are multi-char.
         /// </summary>
-        /// <param name="equation"></param>
-        /// <returns></returns>
+        /// <param name="equation"> </param>
+        /// <returns> </returns>
         public static Dictionary<string, string> GenerateEquationAliases(string equation){
-            var splittableEquation = (String)equation.Clone();
+            var splittableEquation = (String) equation.Clone();
 
             splittableEquation = splittableEquation.Replace('+', ' ');
             splittableEquation = splittableEquation.Replace('-', ' ');
@@ -288,18 +285,18 @@ namespace Uncertainty_Propagation_Calculator{
 
             //parse out the extra empty spaces
             String[] symbolList = (
-                                     from constant in rawSymbols
-                                     where constant != ""
-                                     where Char.IsDigit(constant.ToCharArray()[0]) == false
-                                     where constant.Contains(".") == false
-                                     select constant
-                                 ).ToArray();
+                                      from constant in rawSymbols
+                                      where constant != ""
+                                      where Char.IsDigit(constant.ToCharArray()[0]) == false
+                                      where constant.Contains(".") == false
+                                      select constant
+                                  ).ToArray();
 
             //make sure that none of the symbol names contain substrings of other symbol names because 
             //that will shit up EVERYTHING when it comes time to convert between symbols and aliases
-            foreach (var symbol in symbolList) {
-                foreach (var sconstant in symbolList) {
-                    if (symbol.Contains(sconstant) && symbol != sconstant) {
+            foreach (var symbol in symbolList){
+                foreach (var sconstant in symbolList){
+                    if (symbol.Contains(sconstant) && symbol != sconstant){
                         throw new Exception("one of the variables substrings that can be confused as other variables");
                     }
                 }
@@ -318,14 +315,15 @@ namespace Uncertainty_Propagation_Calculator{
             const string alphabet = "abcdfhijkmpqrstuvwxyz";
 
             //todo: get rid of 3 character limitation on symbol names
-            for (int i = 0; i < symbolList.Count(); i++) {
-                if (symbolList[i].Count() > 3) {
+            for (int i = 0; i < symbolList.Count(); i++){
+                if (symbolList[i].Count() > 3){
                     throw new Exception("variable names may not be longer than 3 characters");
                 }
-                try {
+                try{
                     symbolAliases.Add(symbolList[i], alphabet[i].ToString());
                 }
-                catch (ArgumentException) {}
+                catch (ArgumentException){
+                }
             }
             return symbolAliases;
         }

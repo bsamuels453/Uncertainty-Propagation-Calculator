@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region
+
 using System.Linq;
-using System.Text;
 
-namespace Uncertainty_Propagation_Calculator {
-    class LibreMathConverter {
-        //todo: replace the internals of this method with stuff that calls the ExpressionManip helper class
-        public static string EquationToLibre(string equation) {
+#endregion
+
+namespace Uncertainty_Propagation_Calculator{
+    internal class LibreMathConverter{
+        //xxxtodo: replace the internals of this method with stuff that calls the ExpressionManip helper class
+        public static string EquationToLibre(string equation){
             int divPos;
-            while ((divPos = equation.IndexOf('/')) != -1) {
-
+            while ((divPos = equation.IndexOf('/')) != -1){
                 bool leftSideEnclosed = equation[divPos - 1] == ')';
                 bool rightSideEnclosed = equation[divPos + 1] == '(';
                 bool terminatedByBracket = false;
@@ -18,14 +18,14 @@ namespace Uncertainty_Propagation_Calculator {
                 bracketReq = 0;
                 int openingBrackets = 0;
                 int closingBracketPos = -1;
-                for (int i = divPos + 1; i < equation.Count(); i++) {
-                    switch (equation[i]) {
+                for (int i = divPos + 1; i < equation.Count(); i++){
+                    switch (equation[i]){
                         case '(':
                             openingBrackets++;
                             break;
                         case ')':
                             openingBrackets--;
-                            if (openingBrackets < bracketReq) {
+                            if (openingBrackets < bracketReq){
                                 closingBracketPos = i;
                                 terminatedByBracket = true;
                             }
@@ -34,12 +34,12 @@ namespace Uncertainty_Propagation_Calculator {
                             closingBracketPos = i + 1;
                             break;
                         default:
-                            if (!rightSideEnclosed) {
+                            if (!rightSideEnclosed){
                                 if (equation[i] == '+' ||
                                     equation[i] == '-' ||
                                     equation[i] == '*' ||
                                     equation[i] == '/'
-                                    ) {
+                                    ){
                                     closingBracketPos = i;
                                     break;
                                 }
@@ -47,23 +47,22 @@ namespace Uncertainty_Propagation_Calculator {
                             break;
                     }
 
-                    if (closingBracketPos != -1) {
+                    if (closingBracketPos != -1){
                         break;
                     }
 
-                    if (i == equation.Count() - 1) {
+                    if (i == equation.Count() - 1){
                         closingBracketPos = i + 1; //xxx
                     }
                 }
 
-                if (terminatedByBracket) {
+                if (terminatedByBracket){
                     equation = equation.Remove(closingBracketPos, 1);
                 }
                 equation = equation.Insert(closingBracketPos, "}"); //okay
 
 
-
-                if (rightSideEnclosed) {
+                if (rightSideEnclosed){
                     equation = equation.Remove(divPos + 1, 1);
                 }
                 equation = equation.Insert(divPos + 1, "{");
@@ -71,7 +70,7 @@ namespace Uncertainty_Propagation_Calculator {
                 equation = equation.Remove(divPos, 1); //okay
                 equation = equation.Insert(divPos, " over "); //okay
 
-                if (leftSideEnclosed) {
+                if (leftSideEnclosed){
                     equation = equation.Remove(divPos - 1, 1);
                     divPos--;
                 }
@@ -79,16 +78,15 @@ namespace Uncertainty_Propagation_Calculator {
                 equation = equation.Insert(divPos, "}"); //okay
 
 
-
                 terminatedByBracket = false;
                 bracketReq = 0;
                 int closingBrackets = 0;
                 int openingBracketPos = -1;
-                for (int i = divPos - 1; i >= 0; i--) {
-                    switch (equation[i]) {
+                for (int i = divPos - 1; i >= 0; i--){
+                    switch (equation[i]){
                         case '(':
                             closingBrackets--;
-                            if (closingBrackets < bracketReq) { //xxx?
+                            if (closingBrackets < bracketReq){ //xxx?
                                 openingBracketPos = i;
                                 terminatedByBracket = true;
                             }
@@ -101,18 +99,17 @@ namespace Uncertainty_Propagation_Calculator {
                             break;
                     }
 
-                    if (openingBracketPos != -1) {
+                    if (openingBracketPos != -1){
                         break;
                     }
-                    if (i == 0) {
+                    if (i == 0){
                         openingBracketPos = i;
                     }
                 }
-                if (terminatedByBracket) {
+                if (terminatedByBracket){
                     equation = equation.Remove(openingBracketPos, 1);
                 }
                 equation = equation.Insert(openingBracketPos, "{");
-
             }
             return equation;
         }
