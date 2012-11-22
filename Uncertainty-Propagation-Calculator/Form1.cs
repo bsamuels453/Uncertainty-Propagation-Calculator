@@ -11,16 +11,20 @@ namespace Uncertainty_Propagation_Calculator {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
-            var v = (ComboBox)comboBox1;
-            v.SelectedItem = "Normal Format (Calculator Style)";
-        }
 
-        private void pictureBox1_Click(object sender, EventArgs e) {
+            comboBox1.SelectedItem = "Normal (Calculator Style)";
+            comboBox2.SelectedItem = "LibreMath";
 
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+            dataGridView1.UpdateCellErrorText(0, 0);
+            dataGridView1.UpdateCellErrorText(0, 0);
+            //dataGridView1[0, 0].ErrorText = "no";
 
         }
+
+        private void dataGridView1_CellErrorTextNeeded(object sender, DataGridViewCellErrorTextNeededEventArgs e) {
+            e.ErrorText = "hello";
+        }
+
+
     }
 }
