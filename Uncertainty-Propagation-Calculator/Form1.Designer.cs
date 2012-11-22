@@ -236,6 +236,7 @@
             this.PartialDerivsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
             this.PartialDerivsGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.PartialDerivsGrid.Enabled = false;
             this.PartialDerivsGrid.Location = new System.Drawing.Point(6, 19);
             this.PartialDerivsGrid.MultiSelect = false;
             this.PartialDerivsGrid.Name = "PartialDerivsGrid";
@@ -282,6 +283,7 @@
             // 
             // FinalPropEquationField
             // 
+            this.FinalPropEquationField.Enabled = false;
             this.FinalPropEquationField.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FinalPropEquationField.Location = new System.Drawing.Point(6, 159);
             this.FinalPropEquationField.Name = "FinalPropEquationField";
@@ -298,6 +300,7 @@
             this.PlugPartialDerivGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
             this.PlugPartialDerivGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.PlugPartialDerivGrid.Enabled = false;
             this.PlugPartialDerivGrid.Location = new System.Drawing.Point(384, 19);
             this.PlugPartialDerivGrid.MultiSelect = false;
             this.PlugPartialDerivGrid.Name = "PlugPartialDerivGrid";
@@ -378,6 +381,7 @@
             this.GetKeyBut.TabIndex = 23;
             this.GetKeyBut.Text = "Get Key";
             this.GetKeyBut.UseVisualStyleBackColor = true;
+            this.GetKeyBut.Click += new System.EventHandler(this.GetKeyButClick);
             // 
             // DataInputErrLabel
             // 
