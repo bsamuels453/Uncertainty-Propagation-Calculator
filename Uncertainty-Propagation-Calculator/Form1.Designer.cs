@@ -70,7 +70,7 @@
             this.WolframApiTextBox.Name = "WolframApiTextBox";
             this.WolframApiTextBox.Size = new System.Drawing.Size(160, 23);
             this.WolframApiTextBox.TabIndex = 1;
-            this.WolframApiTextBox.Text = "H5GYWJ-U7KERLQH69";
+            this.WolframApiTextBox.Text = "H5GYWJ-U7KERLQH";
             this.WolframApiTextBox.WordWrap = false;
             // 
             // label1
@@ -225,6 +225,7 @@
             this.OpenOutputImageLocBut.TabIndex = 13;
             this.OpenOutputImageLocBut.Text = "Open Output Image Location";
             this.OpenOutputImageLocBut.UseVisualStyleBackColor = true;
+            this.OpenOutputImageLocBut.Click += new System.EventHandler(this.OpenOutputImageLocButClick);
             // 
             // PartialDerivsGrid
             // 

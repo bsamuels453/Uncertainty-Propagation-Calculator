@@ -3,6 +3,7 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 #endregion
@@ -31,6 +32,12 @@ namespace Uncertainty_Propagation_Calculator{
             catch (Exception other){
                 MessageBox.Show(other.Message);
             }
+        }
+
+        void OpenOutputImageLocButClick(object sender, EventArgs e){
+            Process prc = new Process();
+            prc.StartInfo.FileName = Directory.GetCurrentDirectory() + "/Output";
+            prc.Start();
         }
     }
 }
