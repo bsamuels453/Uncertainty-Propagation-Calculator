@@ -23,56 +23,55 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.WolframApiTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.VariableEntryGrid = new System.Windows.Forms.DataGridView();
             this.VariableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VariableValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VariableUncertainty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.EquationEntryTextBox = new System.Windows.Forms.TextBox();
+            this.EquationImagePanel = new System.Windows.Forms.PictureBox();
+            this.EqationInputFmtDropdown = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.OutputFmtDropdown = new System.Windows.Forms.ComboBox();
+            this.CalculateBut = new System.Windows.Forms.Button();
+            this.OpenOutputImageLocBut = new System.Windows.Forms.Button();
+            this.PartialDerivsGrid = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.FinalPropEquationField = new System.Windows.Forms.TextBox();
+            this.PlugPartialDerivGrid = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.GenTextEquationsChkBox = new System.Windows.Forms.CheckBox();
+            this.GenEqImagesChkBox = new System.Windows.Forms.CheckBox();
+            this.CheckValidityBut = new System.Windows.Forms.Button();
+            this.SaveKeyBut = new System.Windows.Forms.Button();
+            this.ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.GetKeyBut = new System.Windows.Forms.Button();
+            this.DataInputErrLabel = new System.Windows.Forms.Label();
+            this.CalculationPhaseLabel = new System.Windows.Forms.Label();
+            this.KeyValidityLabel = new System.Windows.Forms.Label();
+            this.KeySavedLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.VariableEntryGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EquationImagePanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PartialDerivsGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlugPartialDerivGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // WolframApiTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(12, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(160, 23);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "H5GYWJ-U7KERLQH69";
-            this.textBox1.WordWrap = false;
+            this.WolframApiTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WolframApiTextBox.Location = new System.Drawing.Point(12, 25);
+            this.WolframApiTextBox.Name = "WolframApiTextBox";
+            this.WolframApiTextBox.Size = new System.Drawing.Size(160, 23);
+            this.WolframApiTextBox.TabIndex = 1;
+            this.WolframApiTextBox.Text = "H5GYWJ-U7KERLQH69";
+            this.WolframApiTextBox.WordWrap = false;
             // 
             // label1
             // 
@@ -83,26 +82,26 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Wolfram Alpha API Key";
             // 
-            // dataGridView1
+            // VariableEntryGrid
             // 
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.VariableEntryGrid.AllowUserToResizeColumns = false;
+            this.VariableEntryGrid.AllowUserToResizeRows = false;
+            this.VariableEntryGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.VariableEntryGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.VariableName,
             this.VariableValue,
             this.VariableUncertainty});
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.Location = new System.Drawing.Point(386, 73);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 30;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(372, 117);
-            this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.dataGridView1_CellErrorTextNeeded);
+            this.VariableEntryGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.VariableEntryGrid.Location = new System.Drawing.Point(386, 73);
+            this.VariableEntryGrid.MultiSelect = false;
+            this.VariableEntryGrid.Name = "VariableEntryGrid";
+            this.VariableEntryGrid.RowHeadersWidth = 30;
+            this.VariableEntryGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.VariableEntryGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.VariableEntryGrid.ShowEditingIcon = false;
+            this.VariableEntryGrid.Size = new System.Drawing.Size(372, 117);
+            this.VariableEntryGrid.TabIndex = 3;
+            this.VariableEntryGrid.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.dataGridView1_CellErrorTextNeeded);
             // 
             // VariableName
             // 
@@ -145,37 +144,37 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Equation Entry";
             // 
-            // textBox2
+            // EquationEntryTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 73);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(368, 117);
-            this.textBox2.TabIndex = 6;
+            this.EquationEntryTextBox.Location = new System.Drawing.Point(12, 73);
+            this.EquationEntryTextBox.Multiline = true;
+            this.EquationEntryTextBox.Name = "EquationEntryTextBox";
+            this.EquationEntryTextBox.Size = new System.Drawing.Size(368, 117);
+            this.EquationEntryTextBox.TabIndex = 6;
             // 
-            // pictureBox1
+            // EquationImagePanel
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 196);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(369, 101);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            this.EquationImagePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.EquationImagePanel.InitialImage = null;
+            this.EquationImagePanel.Location = new System.Drawing.Point(11, 196);
+            this.EquationImagePanel.Name = "EquationImagePanel";
+            this.EquationImagePanel.Size = new System.Drawing.Size(369, 101);
+            this.EquationImagePanel.TabIndex = 7;
+            this.EquationImagePanel.TabStop = false;
             // 
-            // comboBox1
+            // EqationInputFmtDropdown
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.EqationInputFmtDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.EqationInputFmtDropdown.Enabled = false;
+            this.EqationInputFmtDropdown.FormattingEnabled = true;
+            this.EqationInputFmtDropdown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.EqationInputFmtDropdown.Items.AddRange(new object[] {
             "Normal (Calculator Style)",
             "LaTeX"});
-            this.comboBox1.Location = new System.Drawing.Point(389, 223);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(167, 21);
-            this.comboBox1.TabIndex = 8;
+            this.EqationInputFmtDropdown.Location = new System.Drawing.Point(389, 223);
+            this.EqationInputFmtDropdown.Name = "EqationInputFmtDropdown";
+            this.EqationInputFmtDropdown.Size = new System.Drawing.Size(167, 21);
+            this.EqationInputFmtDropdown.TabIndex = 8;
             // 
             // label4
             // 
@@ -195,60 +194,60 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Output Format";
             // 
-            // comboBox2
+            // OutputFmtDropdown
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.OutputFmtDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OutputFmtDropdown.Enabled = false;
+            this.OutputFmtDropdown.FormattingEnabled = true;
+            this.OutputFmtDropdown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.OutputFmtDropdown.Items.AddRange(new object[] {
             "LibreMath",
             "Normal",
             "LaTeX"});
-            this.comboBox2.Location = new System.Drawing.Point(389, 271);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(167, 21);
-            this.comboBox2.TabIndex = 11;
+            this.OutputFmtDropdown.Location = new System.Drawing.Point(389, 271);
+            this.OutputFmtDropdown.Name = "OutputFmtDropdown";
+            this.OutputFmtDropdown.Size = new System.Drawing.Size(167, 21);
+            this.OutputFmtDropdown.TabIndex = 11;
             // 
-            // button1
+            // CalculateBut
             // 
-            this.button1.Location = new System.Drawing.Point(572, 271);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 41);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Calculate";
-            this.button1.UseVisualStyleBackColor = true;
+            this.CalculateBut.Location = new System.Drawing.Point(572, 271);
+            this.CalculateBut.Name = "CalculateBut";
+            this.CalculateBut.Size = new System.Drawing.Size(186, 41);
+            this.CalculateBut.TabIndex = 12;
+            this.CalculateBut.Text = "Calculate";
+            this.CalculateBut.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // OpenOutputImageLocBut
             // 
-            this.button2.Location = new System.Drawing.Point(384, 143);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(185, 39);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Open Output Image Location";
-            this.button2.UseVisualStyleBackColor = true;
+            this.OpenOutputImageLocBut.Location = new System.Drawing.Point(384, 143);
+            this.OpenOutputImageLocBut.Name = "OpenOutputImageLocBut";
+            this.OpenOutputImageLocBut.Size = new System.Drawing.Size(185, 39);
+            this.OpenOutputImageLocBut.TabIndex = 13;
+            this.OpenOutputImageLocBut.Text = "Open Output Image Location";
+            this.OpenOutputImageLocBut.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // PartialDerivsGrid
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PartialDerivsGrid.AllowUserToAddRows = false;
+            this.PartialDerivsGrid.AllowUserToDeleteRows = false;
+            this.PartialDerivsGrid.AllowUserToResizeColumns = false;
+            this.PartialDerivsGrid.AllowUserToResizeRows = false;
+            this.PartialDerivsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PartialDerivsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
-            this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.RowHeadersWidth = 5;
-            this.dataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView2.ShowEditingIcon = false;
-            this.dataGridView2.Size = new System.Drawing.Size(367, 109);
-            this.dataGridView2.TabIndex = 14;
+            this.PartialDerivsGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.PartialDerivsGrid.Location = new System.Drawing.Point(6, 19);
+            this.PartialDerivsGrid.MultiSelect = false;
+            this.PartialDerivsGrid.Name = "PartialDerivsGrid";
+            this.PartialDerivsGrid.RowHeadersVisible = false;
+            this.PartialDerivsGrid.RowHeadersWidth = 5;
+            this.PartialDerivsGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.PartialDerivsGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.PartialDerivsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.PartialDerivsGrid.ShowEditingIcon = false;
+            this.PartialDerivsGrid.Size = new System.Drawing.Size(367, 109);
+            this.PartialDerivsGrid.TabIndex = 14;
             // 
             // Column1
             // 
@@ -262,10 +261,10 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.dataGridView3);
-            this.groupBox1.Controls.Add(this.dataGridView2);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.FinalPropEquationField);
+            this.groupBox1.Controls.Add(this.PlugPartialDerivGrid);
+            this.groupBox1.Controls.Add(this.PartialDerivsGrid);
+            this.groupBox1.Controls.Add(this.OpenOutputImageLocBut);
             this.groupBox1.Location = new System.Drawing.Point(11, 358);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(755, 196);
@@ -282,35 +281,35 @@
             this.label6.TabIndex = 17;
             this.label6.Text = "Final Propagation Equation";
             // 
-            // textBox3
+            // FinalPropEquationField
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(6, 159);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(366, 23);
-            this.textBox3.TabIndex = 16;
+            this.FinalPropEquationField.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FinalPropEquationField.Location = new System.Drawing.Point(6, 159);
+            this.FinalPropEquationField.Name = "FinalPropEquationField";
+            this.FinalPropEquationField.Size = new System.Drawing.Size(366, 23);
+            this.FinalPropEquationField.TabIndex = 16;
             // 
-            // dataGridView3
+            // PlugPartialDerivGrid
             // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            this.dataGridView3.AllowUserToResizeColumns = false;
-            this.dataGridView3.AllowUserToResizeRows = false;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PlugPartialDerivGrid.AllowUserToAddRows = false;
+            this.PlugPartialDerivGrid.AllowUserToDeleteRows = false;
+            this.PlugPartialDerivGrid.AllowUserToResizeColumns = false;
+            this.PlugPartialDerivGrid.AllowUserToResizeRows = false;
+            this.PlugPartialDerivGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.PlugPartialDerivGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
-            this.dataGridView3.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView3.Location = new System.Drawing.Point(384, 19);
-            this.dataGridView3.MultiSelect = false;
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.RowHeadersWidth = 5;
-            this.dataGridView3.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView3.ShowEditingIcon = false;
-            this.dataGridView3.Size = new System.Drawing.Size(363, 109);
-            this.dataGridView3.TabIndex = 15;
+            this.PlugPartialDerivGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.PlugPartialDerivGrid.Location = new System.Drawing.Point(384, 19);
+            this.PlugPartialDerivGrid.MultiSelect = false;
+            this.PlugPartialDerivGrid.Name = "PlugPartialDerivGrid";
+            this.PlugPartialDerivGrid.RowHeadersVisible = false;
+            this.PlugPartialDerivGrid.RowHeadersWidth = 5;
+            this.PlugPartialDerivGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.PlugPartialDerivGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.PlugPartialDerivGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.PlugPartialDerivGrid.ShowEditingIcon = false;
+            this.PlugPartialDerivGrid.Size = new System.Drawing.Size(363, 109);
+            this.PlugPartialDerivGrid.TabIndex = 15;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -321,161 +320,148 @@
             this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn1.Width = 368;
             // 
-            // checkBox1
+            // GenTextEquationsChkBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(572, 223);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(144, 17);
-            this.checkBox1.TabIndex = 17;
-            this.checkBox1.Text = "Generate Text Equations";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.GenTextEquationsChkBox.AutoSize = true;
+            this.GenTextEquationsChkBox.Checked = true;
+            this.GenTextEquationsChkBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.GenTextEquationsChkBox.Enabled = false;
+            this.GenTextEquationsChkBox.Location = new System.Drawing.Point(572, 223);
+            this.GenTextEquationsChkBox.Name = "GenTextEquationsChkBox";
+            this.GenTextEquationsChkBox.Size = new System.Drawing.Size(144, 17);
+            this.GenTextEquationsChkBox.TabIndex = 17;
+            this.GenTextEquationsChkBox.Text = "Generate Text Equations";
+            this.GenTextEquationsChkBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // GenEqImagesChkBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(572, 246);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(152, 17);
-            this.checkBox2.TabIndex = 18;
-            this.checkBox2.Text = "Generate Equation Images";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.GenEqImagesChkBox.AutoSize = true;
+            this.GenEqImagesChkBox.Checked = true;
+            this.GenEqImagesChkBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.GenEqImagesChkBox.Enabled = false;
+            this.GenEqImagesChkBox.Location = new System.Drawing.Point(572, 246);
+            this.GenEqImagesChkBox.Name = "GenEqImagesChkBox";
+            this.GenEqImagesChkBox.Size = new System.Drawing.Size(152, 17);
+            this.GenEqImagesChkBox.TabIndex = 18;
+            this.GenEqImagesChkBox.Text = "Generate Equation Images";
+            this.GenEqImagesChkBox.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // CheckValidityBut
             // 
-            this.button3.Location = new System.Drawing.Point(178, 23);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(86, 25);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "Check Validity";
-            this.button3.UseVisualStyleBackColor = true;
+            this.CheckValidityBut.Location = new System.Drawing.Point(178, 23);
+            this.CheckValidityBut.Name = "CheckValidityBut";
+            this.CheckValidityBut.Size = new System.Drawing.Size(86, 25);
+            this.CheckValidityBut.TabIndex = 19;
+            this.CheckValidityBut.Text = "Check Validity";
+            this.CheckValidityBut.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // SaveKeyBut
             // 
-            this.button4.Location = new System.Drawing.Point(270, 23);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(80, 24);
-            this.button4.TabIndex = 20;
-            this.button4.Text = "Save Key";
-            this.button4.UseVisualStyleBackColor = true;
+            this.SaveKeyBut.Location = new System.Drawing.Point(270, 23);
+            this.SaveKeyBut.Name = "SaveKeyBut";
+            this.SaveKeyBut.Size = new System.Drawing.Size(80, 24);
+            this.SaveKeyBut.TabIndex = 20;
+            this.SaveKeyBut.Text = "Save Key";
+            this.SaveKeyBut.UseVisualStyleBackColor = true;
             // 
-            // progressBar1
+            // ProgressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(574, 318);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(184, 23);
-            this.progressBar1.TabIndex = 21;
+            this.ProgressBar.Location = new System.Drawing.Point(574, 318);
+            this.ProgressBar.Name = "ProgressBar";
+            this.ProgressBar.Size = new System.Drawing.Size(184, 23);
+            this.ProgressBar.TabIndex = 21;
             // 
-            // label7
+            // GetKeyBut
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(488, 321);
-            this.label7.Name = "label7";
-            this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(72, 20);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Progress";
-            this.label7.Visible = false;
+            this.GetKeyBut.Location = new System.Drawing.Point(356, 23);
+            this.GetKeyBut.Name = "GetKeyBut";
+            this.GetKeyBut.Size = new System.Drawing.Size(56, 24);
+            this.GetKeyBut.TabIndex = 23;
+            this.GetKeyBut.Text = "Get Key";
+            this.GetKeyBut.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // DataInputErrLabel
             // 
-            this.button5.Location = new System.Drawing.Point(356, 23);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(56, 24);
-            this.button5.TabIndex = 23;
-            this.button5.Text = "Get Key";
-            this.button5.UseVisualStyleBackColor = true;
+            this.DataInputErrLabel.AutoSize = true;
+            this.DataInputErrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataInputErrLabel.ForeColor = System.Drawing.Color.Red;
+            this.DataInputErrLabel.Location = new System.Drawing.Point(423, 22);
+            this.DataInputErrLabel.Name = "DataInputErrLabel";
+            this.DataInputErrLabel.Size = new System.Drawing.Size(237, 25);
+            this.DataInputErrLabel.TabIndex = 24;
+            this.DataInputErrLabel.Text = "Data Input Error Prompt";
+            this.DataInputErrLabel.Visible = false;
             // 
-            // label8
+            // CalculationPhaseLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(423, 22);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(151, 25);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "Error Prompt 1";
-            this.label8.Visible = false;
+            this.CalculationPhaseLabel.AutoSize = true;
+            this.CalculationPhaseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CalculationPhaseLabel.ForeColor = System.Drawing.Color.Black;
+            this.CalculationPhaseLabel.Location = new System.Drawing.Point(6, 330);
+            this.CalculationPhaseLabel.Name = "CalculationPhaseLabel";
+            this.CalculationPhaseLabel.Size = new System.Drawing.Size(260, 25);
+            this.CalculationPhaseLabel.TabIndex = 25;
+            this.CalculationPhaseLabel.Text = "Calculation Phase Prompt";
+            this.CalculationPhaseLabel.Visible = false;
             // 
-            // label9
+            // KeyValidityLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(6, 330);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(151, 25);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "Error Prompt 2";
-            this.label9.Visible = false;
+            this.KeyValidityLabel.AutoSize = true;
+            this.KeyValidityLabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeyValidityLabel.Location = new System.Drawing.Point(179, 8);
+            this.KeyValidityLabel.Name = "KeyValidityLabel";
+            this.KeyValidityLabel.Size = new System.Drawing.Size(84, 15);
+            this.KeyValidityLabel.TabIndex = 26;
+            this.KeyValidityLabel.Text = "Invalid Key";
+            this.KeyValidityLabel.Visible = false;
             // 
-            // label10
+            // KeySavedLabel
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(179, 8);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(84, 15);
-            this.label10.TabIndex = 26;
-            this.label10.Text = "Invalid Key";
-            this.label10.Visible = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(275, 9);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 15);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "Key Saved";
-            this.label11.Visible = false;
+            this.KeySavedLabel.AutoSize = true;
+            this.KeySavedLabel.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KeySavedLabel.Location = new System.Drawing.Point(275, 9);
+            this.KeySavedLabel.Name = "KeySavedLabel";
+            this.KeySavedLabel.Size = new System.Drawing.Size(70, 15);
+            this.KeySavedLabel.TabIndex = 27;
+            this.KeySavedLabel.Text = "Key Saved";
+            this.KeySavedLabel.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(775, 566);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.KeySavedLabel);
+            this.Controls.Add(this.KeyValidityLabel);
+            this.Controls.Add(this.CalculationPhaseLabel);
+            this.Controls.Add(this.DataInputErrLabel);
+            this.Controls.Add(this.GetKeyBut);
+            this.Controls.Add(this.ProgressBar);
+            this.Controls.Add(this.SaveKeyBut);
+            this.Controls.Add(this.CheckValidityBut);
+            this.Controls.Add(this.GenEqImagesChkBox);
+            this.Controls.Add(this.GenTextEquationsChkBox);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.CalculateBut);
+            this.Controls.Add(this.OutputFmtDropdown);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.EqationInputFmtDropdown);
+            this.Controls.Add(this.EquationImagePanel);
+            this.Controls.Add(this.EquationEntryTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.VariableEntryGrid);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.WolframApiTextBox);
             this.Name = "Form1";
             this.Text = "Uncertainty Propagation Calculator";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VariableEntryGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EquationImagePanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PartialDerivsGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PlugPartialDerivGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -483,40 +469,39 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox WolframApiTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox EquationEntryTextBox;
+        private System.Windows.Forms.PictureBox EquationImagePanel;
+        private System.Windows.Forms.ComboBox EqationInputFmtDropdown;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ComboBox OutputFmtDropdown;
+        private System.Windows.Forms.Button CalculateBut;
+        private System.Windows.Forms.Button OpenOutputImageLocBut;
+        private System.Windows.Forms.DataGridView PartialDerivsGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridView PlugPartialDerivGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox FinalPropEquationField;
+        private System.Windows.Forms.CheckBox GenTextEquationsChkBox;
+        private System.Windows.Forms.CheckBox GenEqImagesChkBox;
+        private System.Windows.Forms.Button CheckValidityBut;
+        private System.Windows.Forms.Button SaveKeyBut;
+        private System.Windows.Forms.ProgressBar ProgressBar;
+        private System.Windows.Forms.Button GetKeyBut;
+        private System.Windows.Forms.Label DataInputErrLabel;
+        private System.Windows.Forms.Label CalculationPhaseLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn VariableName;
         private System.Windows.Forms.DataGridViewTextBoxColumn VariableValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn VariableUncertainty;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridView VariableEntryGrid;
+        private System.Windows.Forms.Label KeyValidityLabel;
+        private System.Windows.Forms.Label KeySavedLabel;
     }
 }
 

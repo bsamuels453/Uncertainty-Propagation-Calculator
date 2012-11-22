@@ -12,11 +12,11 @@ namespace Uncertainty_Propagation_Calculator {
         public Form1() {
             InitializeComponent();
 
-            comboBox1.SelectedItem = "Normal (Calculator Style)";
-            comboBox2.SelectedItem = "LibreMath";
+            EqationInputFmtDropdown.SelectedItem = "Normal (Calculator Style)";
+            OutputFmtDropdown.SelectedItem = "LibreMath";
 
-            dataGridView1.UpdateCellErrorText(0, 0);
-            dataGridView1.UpdateCellErrorText(0, 0);
+            VariableEntryGrid.UpdateCellErrorText(0, 0);
+            VariableEntryGrid.UpdateCellErrorText(0, 0);
             //dataGridView1[0, 0].ErrorText = "no";
 
         }
