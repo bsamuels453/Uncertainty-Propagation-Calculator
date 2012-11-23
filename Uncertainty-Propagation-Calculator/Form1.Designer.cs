@@ -32,7 +32,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.EquationEntryTextBox = new System.Windows.Forms.TextBox();
-            this.EquationImagePanel = new System.Windows.Forms.PictureBox();
             this.EqationInputFmtDropdown = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -56,8 +55,9 @@
             this.CalculationPhaseLabel = new System.Windows.Forms.Label();
             this.KeyValidityLabel = new System.Windows.Forms.Label();
             this.KeySavedLabel = new System.Windows.Forms.Label();
+            this.FormulaRenderWindow = new System.Windows.Forms.WebBrowser();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.VariableEntryGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EquationImagePanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PartialDerivsGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlugPartialDerivGrid)).BeginInit();
@@ -151,16 +151,6 @@
             this.EquationEntryTextBox.Size = new System.Drawing.Size(368, 117);
             this.EquationEntryTextBox.TabIndex = 6;
             // 
-            // EquationImagePanel
-            // 
-            this.EquationImagePanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.EquationImagePanel.InitialImage = null;
-            this.EquationImagePanel.Location = new System.Drawing.Point(11, 196);
-            this.EquationImagePanel.Name = "EquationImagePanel";
-            this.EquationImagePanel.Size = new System.Drawing.Size(369, 101);
-            this.EquationImagePanel.TabIndex = 7;
-            this.EquationImagePanel.TabStop = false;
-            // 
             // EqationInputFmtDropdown
             // 
             this.EqationInputFmtDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -216,7 +206,7 @@
             this.CalculateBut.TabIndex = 12;
             this.CalculateBut.Text = "Calculate";
             this.CalculateBut.UseVisualStyleBackColor = true;
-            this.CalculateBut.Click += new System.EventHandler(this.CalculateBut_Click);
+            this.CalculateBut.Click += new System.EventHandler(this.CalculateButClick);
             // 
             // OpenOutputImageLocBut
             // 
@@ -433,11 +423,33 @@
             this.KeySavedLabel.Text = "Key Saved";
             this.KeySavedLabel.Visible = false;
             // 
+            // FormulaRenderWindow
+            // 
+            this.FormulaRenderWindow.Location = new System.Drawing.Point(12, 196);
+            this.FormulaRenderWindow.MinimumSize = new System.Drawing.Size(20, 20);
+            this.FormulaRenderWindow.Name = "FormulaRenderWindow";
+            this.FormulaRenderWindow.Size = new System.Drawing.Size(372, 116);
+            this.FormulaRenderWindow.TabIndex = 30;
+            this.FormulaRenderWindow.Url = new System.Uri("D:\\Projects\\Uncertainty-Propagation-Calculator\\bin\\LeanAndMeanPdfLatex\\bin\\win32\\" +
+                    "formula.jpg", System.UriKind.Absolute);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(11, 171);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(60, 19);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Render";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(775, 566);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.FormulaRenderWindow);
             this.Controls.Add(this.KeySavedLabel);
             this.Controls.Add(this.KeyValidityLabel);
             this.Controls.Add(this.CalculationPhaseLabel);
@@ -454,7 +466,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.EqationInputFmtDropdown);
-            this.Controls.Add(this.EquationImagePanel);
             this.Controls.Add(this.EquationEntryTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -464,7 +475,6 @@
             this.Name = "Form1";
             this.Text = "Uncertainty Propagation Calculator";
             ((System.ComponentModel.ISupportInitialize)(this.VariableEntryGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EquationImagePanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PartialDerivsGrid)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -481,7 +491,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox EquationEntryTextBox;
-        private System.Windows.Forms.PictureBox EquationImagePanel;
         private System.Windows.Forms.ComboBox EqationInputFmtDropdown;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -509,6 +518,8 @@
         private System.Windows.Forms.DataGridView VariableEntryGrid;
         private System.Windows.Forms.Label KeyValidityLabel;
         private System.Windows.Forms.Label KeySavedLabel;
+        private System.Windows.Forms.WebBrowser FormulaRenderWindow;
+        private System.Windows.Forms.Button button1;
     }
 }
 

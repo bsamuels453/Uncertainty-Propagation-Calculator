@@ -1,15 +1,20 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
+using PdfToImage;
 
 #endregion
 
 namespace Uncertainty_Propagation_Calculator{
     public partial class Form1 : Form{
+        LatexToImg _latexConverter;
+
         public Form1(){
             InitializeComponent();
 
@@ -18,6 +23,23 @@ namespace Uncertainty_Propagation_Calculator{
 
             VariableEntryGrid.UpdateCellErrorText(0, 0);
             VariableEntryGrid.UpdateCellErrorText(0, 0);
+            _latexConverter = new LatexToImg(Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\");
+            _latexConverter.OnConversionCompletion += PdfConversionCallback;
+
+            /*
+            _pdfConverter = new PDFConvert();
+            _pdfConverter.OutputFormat = "jpeg"; //format
+            _pdfConverter.ResolutionX = 200; //dpi
+            _pdfConverter.ResolutionY = 200;
+            _pdfConverter.GraphicsAlphaBit = 4;
+            _pdfConverter.TextAlphaBit = 4;
+            /*_pdfConverter.FontPath = new List<string>();
+            _pdfConverter.FontPath.Add("arial.ttf");
+            _pdfConverter.DisablePlatformFonts = true;
+            _pdfConverter.DisablePrecompiledFonts = true;*/
+            /*
+                RenderLatexToPdf(true);
+             */
         }
 
         void GetKeyButClick(object sender, EventArgs e){
@@ -40,7 +62,7 @@ namespace Uncertainty_Propagation_Calculator{
             prc.Start();
         }
 
-        private void CalculateBut_Click(object sender, EventArgs e) {
+        private void CalculateButClick(object sender, EventArgs e) {
 
         }
 
@@ -50,6 +72,15 @@ namespace Uncertainty_Propagation_Calculator{
             sw.Write(key);
             sw.Close();
             KeySavedLabel.Visible = true;
+        }
+
+        void PdfConversionCallback(){
+            //EquationImagePanel.ImageLocation = Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\formula.png";
+            FormulaRenderWindow.Refresh();
+        }
+
+        private void Button1Click(object sender, EventArgs e) {
+            _latexConverter.QueueNewUpdate(EquationEntryTextBox.Text);
         }
     }
 }
