@@ -35,5 +35,6 @@ TestProject3*/
 *.lastcodeanalysissucceeded
 obj*/
 bin*/
+TestProject*/
 [Rr]elease*/
 _ReSharper*/
