@@ -78,8 +78,8 @@ namespace Uncertainty_Propagation_Calculator{
 
         void ConvertPdfToImage(object obj, EventArgs eventArgs){
             _converter.Convert(
-                Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\formula.pdf",
-                Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\formula.jpg"
+                _pathToDirectory+"formula.pdf",
+                _pathToDirectory+"formula.jpg"
                 );
             _isConversionRunning = false;
             if (OnConversionCompletion != null)
