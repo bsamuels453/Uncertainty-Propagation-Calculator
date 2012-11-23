@@ -132,9 +132,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(386, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
+            this.label2.Size = new System.Drawing.Size(201, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Variable Entry";
+            this.label2.Text = "Variable Entry (Scientific notation is okay)";
             // 
             // label3
             // 
@@ -209,6 +209,7 @@
             this.CalculateBut.TabIndex = 12;
             this.CalculateBut.Text = "Calculate";
             this.CalculateBut.UseVisualStyleBackColor = true;
+            this.CalculateBut.Click += new System.EventHandler(this.CalculateButClick);
             // 
             // OpenOutputImageLocBut
             // 
@@ -382,11 +383,11 @@
             // DataInputErrLabel
             // 
             this.DataInputErrLabel.AutoSize = true;
-            this.DataInputErrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataInputErrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataInputErrLabel.ForeColor = System.Drawing.Color.Red;
-            this.DataInputErrLabel.Location = new System.Drawing.Point(423, 22);
+            this.DataInputErrLabel.Location = new System.Drawing.Point(418, 23);
             this.DataInputErrLabel.Name = "DataInputErrLabel";
-            this.DataInputErrLabel.Size = new System.Drawing.Size(237, 25);
+            this.DataInputErrLabel.Size = new System.Drawing.Size(169, 16);
             this.DataInputErrLabel.TabIndex = 24;
             this.DataInputErrLabel.Text = "Data Input Error Prompt";
             this.DataInputErrLabel.Visible = false;
@@ -439,14 +440,14 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(17, 196);
+            this.panel1.Location = new System.Drawing.Point(11, 196);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(362, 115);
+            this.panel1.Size = new System.Drawing.Size(368, 115);
             this.panel1.TabIndex = 32;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(305, 71);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
