@@ -75,20 +75,23 @@ namespace Uncertainty_Propagation_Calculator{
             if (!IsVariableTableValid(out s)) {
                 DataInputErrLabel.Text = s;
                 DataInputErrLabel.Visible = true;
+                return;
             }
-            else{
-                DataInputErrLabel.Visible = false;
-            }
+            DataInputErrLabel.Visible = false;
+
+
         }
         #endregion
 
         bool IsVariableTableValid(out string retText){
             var variableNames = new List<string>();
-            for (int i = 0; i < VariableEntryGrid.RowCount; i++){
 
+            int numNullRows = 0;
+            for (int i = 0; i < VariableEntryGrid.RowCount; i++){
                 //check for empty cells
                 //skip empty rows
                 if (VariableEntryGrid[0, i].Value == null && VariableEntryGrid[1, i].Value == null && VariableEntryGrid[2, i].Value == null) {
+                    numNullRows++;
                     continue;
                 }
 
@@ -134,6 +137,11 @@ namespace Uncertainty_Propagation_Calculator{
                 }
             }
 
+            if (numNullRows == VariableEntryGrid.RowCount){
+                retText = "ERROR: No variable data entered";
+                return false;
+            }
+
             //now make sure none of the variable names contain substrings of other variable names
             foreach (var varName in variableNames) {
                 foreach (var varNameToSub in variableNames) {
@@ -143,6 +151,12 @@ namespace Uncertainty_Propagation_Calculator{
                     }
                 }
             }
+            retText = "";
+            return true;
+        }
+
+        bool IsFormulaValid(out string retText){
+
             retText = "";
             return true;
         }
