@@ -52,7 +52,6 @@
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.GetKeyBut = new System.Windows.Forms.Button();
             this.DataInputErrLabel = new System.Windows.Forms.Label();
-            this.CalculationPhaseLabel = new System.Windows.Forms.Label();
             this.KeyValidityLabel = new System.Windows.Forms.Label();
             this.KeySavedLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -141,9 +140,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(8, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.Size = new System.Drawing.Size(248, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Equation Entry";
+            this.label3.Text = "Equation Entry (equation result must be on left side)";
             // 
             // EquationEntryTextBox
             // 
@@ -385,24 +384,12 @@
             this.DataInputErrLabel.AutoSize = true;
             this.DataInputErrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataInputErrLabel.ForeColor = System.Drawing.Color.Red;
-            this.DataInputErrLabel.Location = new System.Drawing.Point(418, 23);
+            this.DataInputErrLabel.Location = new System.Drawing.Point(9, 318);
             this.DataInputErrLabel.Name = "DataInputErrLabel";
             this.DataInputErrLabel.Size = new System.Drawing.Size(169, 16);
             this.DataInputErrLabel.TabIndex = 24;
             this.DataInputErrLabel.Text = "Data Input Error Prompt";
             this.DataInputErrLabel.Visible = false;
-            // 
-            // CalculationPhaseLabel
-            // 
-            this.CalculationPhaseLabel.AutoSize = true;
-            this.CalculationPhaseLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CalculationPhaseLabel.ForeColor = System.Drawing.Color.Black;
-            this.CalculationPhaseLabel.Location = new System.Drawing.Point(6, 330);
-            this.CalculationPhaseLabel.Name = "CalculationPhaseLabel";
-            this.CalculationPhaseLabel.Size = new System.Drawing.Size(260, 25);
-            this.CalculationPhaseLabel.TabIndex = 25;
-            this.CalculationPhaseLabel.Text = "Calculation Phase Prompt";
-            this.CalculationPhaseLabel.Visible = false;
             // 
             // KeyValidityLabel
             // 
@@ -463,7 +450,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.KeySavedLabel);
             this.Controls.Add(this.KeyValidityLabel);
-            this.Controls.Add(this.CalculationPhaseLabel);
             this.Controls.Add(this.DataInputErrLabel);
             this.Controls.Add(this.GetKeyBut);
             this.Controls.Add(this.ProgressBar);
@@ -525,7 +511,6 @@
         private System.Windows.Forms.ProgressBar ProgressBar;
         private System.Windows.Forms.Button GetKeyBut;
         private System.Windows.Forms.Label DataInputErrLabel;
-        private System.Windows.Forms.Label CalculationPhaseLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn VariableName;
         private System.Windows.Forms.DataGridViewTextBoxColumn VariableValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn VariableUncertainty;
