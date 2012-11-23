@@ -55,12 +55,15 @@
             this.CalculationPhaseLabel = new System.Windows.Forms.Label();
             this.KeyValidityLabel = new System.Windows.Forms.Label();
             this.KeySavedLabel = new System.Windows.Forms.Label();
-            this.FormulaRenderWindow = new System.Windows.Forms.WebBrowser();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.VariableEntryGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PartialDerivsGrid)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlugPartialDerivGrid)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // WolframApiTextBox
@@ -70,7 +73,6 @@
             this.WolframApiTextBox.Name = "WolframApiTextBox";
             this.WolframApiTextBox.Size = new System.Drawing.Size(160, 23);
             this.WolframApiTextBox.TabIndex = 1;
-            this.WolframApiTextBox.Text = "H5GYWJ-U7KERLQH";
             this.WolframApiTextBox.WordWrap = false;
             // 
             // label1
@@ -145,6 +147,7 @@
             // 
             // EquationEntryTextBox
             // 
+            this.EquationEntryTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EquationEntryTextBox.Location = new System.Drawing.Point(12, 73);
             this.EquationEntryTextBox.Multiline = true;
             this.EquationEntryTextBox.Name = "EquationEntryTextBox";
@@ -206,7 +209,6 @@
             this.CalculateBut.TabIndex = 12;
             this.CalculateBut.Text = "Calculate";
             this.CalculateBut.UseVisualStyleBackColor = true;
-            this.CalculateBut.Click += new System.EventHandler(this.CalculateButClick);
             // 
             // OpenOutputImageLocBut
             // 
@@ -423,16 +425,6 @@
             this.KeySavedLabel.Text = "Key Saved";
             this.KeySavedLabel.Visible = false;
             // 
-            // FormulaRenderWindow
-            // 
-            this.FormulaRenderWindow.Location = new System.Drawing.Point(12, 196);
-            this.FormulaRenderWindow.MinimumSize = new System.Drawing.Size(20, 20);
-            this.FormulaRenderWindow.Name = "FormulaRenderWindow";
-            this.FormulaRenderWindow.Size = new System.Drawing.Size(372, 116);
-            this.FormulaRenderWindow.TabIndex = 30;
-            this.FormulaRenderWindow.Url = new System.Uri("D:\\Projects\\Uncertainty-Propagation-Calculator\\bin\\LeanAndMeanPdfLatex\\bin\\win32\\" +
-                    "formula.jpg", System.UriKind.Absolute);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(11, 171);
@@ -443,13 +435,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1Click);
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Location = new System.Drawing.Point(17, 196);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(362, 115);
+            this.panel1.TabIndex = 32;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(305, 71);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(775, 566);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.FormulaRenderWindow);
             this.Controls.Add(this.KeySavedLabel);
             this.Controls.Add(this.KeyValidityLabel);
             this.Controls.Add(this.CalculationPhaseLabel);
@@ -479,6 +489,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PlugPartialDerivGrid)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -518,8 +531,9 @@
         private System.Windows.Forms.DataGridView VariableEntryGrid;
         private System.Windows.Forms.Label KeyValidityLabel;
         private System.Windows.Forms.Label KeySavedLabel;
-        private System.Windows.Forms.WebBrowser FormulaRenderWindow;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

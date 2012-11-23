@@ -13,7 +13,7 @@ using PdfToImage;
 
 namespace Uncertainty_Propagation_Calculator{
     public partial class Form1 : Form{
-        LatexToImg _latexConverter;
+        readonly LatexToImg _latexConverter;
 
         public Form1(){
             InitializeComponent();
@@ -21,25 +21,15 @@ namespace Uncertainty_Propagation_Calculator{
             EqationInputFmtDropdown.SelectedItem = "Normal (Calculator Style)";
             OutputFmtDropdown.SelectedItem = "LibreMath";
 
-            VariableEntryGrid.UpdateCellErrorText(0, 0);
-            VariableEntryGrid.UpdateCellErrorText(0, 0);
+            var sr = new StreamReader("apikey.txt");
+            WolframApiTextBox.Text = sr.ReadToEnd();
+            sr.Close();
+
+
             _latexConverter = new LatexToImg(Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\");
             _latexConverter.OnConversionCompletion += PdfConversionCallback;
 
-            /*
-            _pdfConverter = new PDFConvert();
-            _pdfConverter.OutputFormat = "jpeg"; //format
-            _pdfConverter.ResolutionX = 200; //dpi
-            _pdfConverter.ResolutionY = 200;
-            _pdfConverter.GraphicsAlphaBit = 4;
-            _pdfConverter.TextAlphaBit = 4;
-            /*_pdfConverter.FontPath = new List<string>();
-            _pdfConverter.FontPath.Add("arial.ttf");
-            _pdfConverter.DisablePlatformFonts = true;
-            _pdfConverter.DisablePrecompiledFonts = true;*/
-            /*
-                RenderLatexToPdf(true);
-             */
+            _latexConverter.QueueNewUpdate(" ");
         }
 
         void GetKeyButClick(object sender, EventArgs e){
@@ -62,10 +52,6 @@ namespace Uncertainty_Propagation_Calculator{
             prc.Start();
         }
 
-        private void CalculateButClick(object sender, EventArgs e) {
-
-        }
-
         private void SaveKeyButClick(object sender, EventArgs e) {
             string key = WolframApiTextBox.Text;
             var sw = new StreamWriter("apikey.txt", false);
@@ -75,12 +61,13 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         void PdfConversionCallback(){
-            //EquationImagePanel.ImageLocation = Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\formula.png";
-            FormulaRenderWindow.Refresh();
+            //FormulaRenderWindow.Refresh();
+            pictureBox1.ImageLocation = Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\formula.jpg";
         }
 
         private void Button1Click(object sender, EventArgs e) {
             _latexConverter.QueueNewUpdate(EquationEntryTextBox.Text);
         }
+
     }
 }
