@@ -19,7 +19,18 @@ namespace Uncertainty_Propagation_Calculator{
 
         #endregion
 
-        const string _texPrefix = @"\setlength{\voffset}{-1.76in}\setlength{\textheight}{200pt}\setlength{\hoffset}{-2.05in}\setlength{\headsep}{14pt}\setlength{\oddsidemargin}{0pt}\documentclass{article}\begin{document}$";
+       
+        const string _texPrefix = @"
+            \setlength{\pdfpagewidth}{8in}
+            \setlength{\pdfpageheight}{2in}
+            \setlength{\voffset}{-1.76in}
+            \setlength{\textheight}{200pt}
+            \setlength{\hoffset}{-2.05in}
+            \setlength{\headsep}{14pt}
+            \setlength{\oddsidemargin}{0pt}
+            \documentclass{article}
+            \begin{document}
+            $";
         const string _texSuffix = @"$\end{document}";
 
         const int _baseResolution = 200;
