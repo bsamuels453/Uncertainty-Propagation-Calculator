@@ -23,7 +23,7 @@ namespace Uncertainty_Propagation_Calculator{
         const string _texPrefix = @"
             \setlength{\pdfpagewidth}{8in}
             \setlength{\pdfpageheight}{2in}
-            \setlength{\voffset}{-1.76in}
+            \setlength{\voffset}{-1.72in}
             \setlength{\textheight}{200pt}
             \setlength{\hoffset}{-2.05in}
             \setlength{\headsep}{14pt}
