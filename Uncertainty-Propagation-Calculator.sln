@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Uncertainty-Propagation-Calculator.vsmdi = Uncertainty-Propagation-Calculator.vsmdi
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreekSymbols", "GreekSymbols\GreekSymbols.csproj", "{CE375603-37EF-414C-85AA-E00F91D5E3F6}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Uncertainty-Propagation-Calculator.vsmdi
@@ -31,6 +33,16 @@ Global
 		{3BE011EF-8FAE-4518-81AF-BEFDBDECA7C9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{3BE011EF-8FAE-4518-81AF-BEFDBDECA7C9}.Release|x86.ActiveCfg = Release|x86
 		{3BE011EF-8FAE-4518-81AF-BEFDBDECA7C9}.Release|x86.Build.0 = Release|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Debug|x86.ActiveCfg = Debug|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Debug|x86.Build.0 = Debug|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Release|Any CPU.ActiveCfg = Release|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Release|Mixed Platforms.Build.0 = Release|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Release|x86.ActiveCfg = Release|x86
+		{CE375603-37EF-414C-85AA-E00F91D5E3F6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
