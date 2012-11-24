@@ -93,14 +93,6 @@ namespace Uncertainty_Propagation_Calculator{
                 dConstants[i] = double.Parse(input.VariableUncertainties[i].ToString());
             }
 
-            /*            si = 0;
-            foreach (var data in constantData) {
-                dConstants[si] = double.Parse(data.Value);
-                si++;
-            }
-             * */
-
-
             double uncertainty = 0;
 
             for (int i = 0; i < partialSolutions.Count(); i++) {
@@ -112,6 +104,11 @@ namespace Uncertainty_Propagation_Calculator{
 
             output.PropEquation ="size 16{" + propogationStr + "=" + sUncertain + "}";
             output.Result = sUncertain;
+
+            for (int i = 0; i < partialSolutions.Count(); i++){
+                output.PartialDerivs[i] = "size 16{" + output.PartialDerivs[i] + "}";
+                output.PluggedPartialDerivs[i] = "size 16{" + output.PluggedPartialDerivs[i] + "}";
+            }
             return output;
         }
 
@@ -134,7 +131,7 @@ namespace Uncertainty_Propagation_Calculator{
                 var eqToDisplay = (string)toEval.Clone();
 
                 //go through the equation and convert everything to floating point if it isnt already
-                toEval = ExpressionManip.ConvertEquationIntsToFloats(toEval);
+                //toEval = ExpressionManip.ConvertEquationIntsToFloats(toEval);
 
                 //now we need to convert power function (x^n) to Pow(x,n)
                 //toEval = PowerConversion(toEval);
@@ -183,8 +180,8 @@ namespace Uncertainty_Propagation_Calculator{
             public string ApiKey;
             public string Equation;
             public List<string> VariableNames;
-            public List<double> VariableValues;
-            public List<double> VariableUncertainties; 
+            public List<string> VariableValues;
+            public List<string> VariableUncertainties; 
         }
 
         public struct UncertCalcResults{
