@@ -8,8 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Uncertainty-Propagation-Calculator.vsmdi = Uncertainty-Propagation-Calculator.vsmdi
 	EndProjectSection
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Uncertainty Propagation Calculator", "Installer\Uncertainty Propagation Calculator.vdproj", "{BAB66509-FAC4-40C6-B326-076A8435A3F4}"
-EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Uncertainty-Propagation-Calculator.vsmdi
@@ -33,12 +31,6 @@ Global
 		{3BE011EF-8FAE-4518-81AF-BEFDBDECA7C9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{3BE011EF-8FAE-4518-81AF-BEFDBDECA7C9}.Release|x86.ActiveCfg = Release|x86
 		{3BE011EF-8FAE-4518-81AF-BEFDBDECA7C9}.Release|x86.Build.0 = Release|x86
-		{BAB66509-FAC4-40C6-B326-076A8435A3F4}.Debug|Any CPU.ActiveCfg = Debug
-		{BAB66509-FAC4-40C6-B326-076A8435A3F4}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{BAB66509-FAC4-40C6-B326-076A8435A3F4}.Debug|x86.ActiveCfg = Debug
-		{BAB66509-FAC4-40C6-B326-076A8435A3F4}.Release|Any CPU.ActiveCfg = Release
-		{BAB66509-FAC4-40C6-B326-076A8435A3F4}.Release|Mixed Platforms.ActiveCfg = Release
-		{BAB66509-FAC4-40C6-B326-076A8435A3F4}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
