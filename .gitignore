@@ -30,6 +30,7 @@ TestProject3*/
 *.xnb
 *.exe.manifest
 *.pdb
+*.pfx
 *.dll
 *.CodeAnalysisLog.xml
 *.lastcodeanalysissucceeded
