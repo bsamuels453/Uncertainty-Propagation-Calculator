@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using PdfToImage;
@@ -79,7 +80,11 @@ namespace Uncertainty_Propagation_Calculator{
             }
             DataInputErrLabel.Visible = false;
 
-
+            if (!IsFormulaValid(out s)){
+                DataInputErrLabel.Text = s;
+                DataInputErrLabel.Visible = true;
+                return;
+            }
         }
         #endregion
 
@@ -156,6 +161,91 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         bool IsFormulaValid(out string retText){
+            string equation = (string)EquationEntryTextBox.Text;
+
+            //count brackets
+            int numBrackets = 0;
+            foreach (var chr in equation){
+                if (chr == '('){
+                    numBrackets++;
+                }
+                if (chr == ')') {
+                    numBrackets--;
+                }
+            }
+            if (numBrackets != 0){
+                retText = "ERROR: Equation is malformatted (bad brackets)";
+                return false;
+            }
+
+            //there should be one =
+            int numEquals = 0;
+            foreach (var chr in equation){
+                if (chr == '=')
+                    numEquals++;
+            }
+
+            if (numEquals != 1){
+                retText = "ERROR: Equation is malformatted (more or less than one equals sign detected)";
+                return false;
+            }
+
+            //now make sure all the variables entered in the table exist in the equation
+            var variableNames = new List<string>();
+            var sides = equation.Split('=');
+            string eqclone = (string)sides[1].Clone();
+
+            for (int i = 0; i < VariableEntryGrid.RowCount; i++){
+                if (VariableEntryGrid[0, i].Value != null){
+                    variableNames.Add((string)VariableEntryGrid[0, i].Value);
+                }
+            }
+
+            foreach (var name in variableNames){
+                if (!eqclone.Contains(name)){
+                    retText = "ERROR: Variable " + name + " was not found in the equation";
+                    return false;
+                }
+                eqclone = eqclone.Replace(name, "");
+            }
+
+            foreach (var str in _symbolBlacklist){
+                eqclone = eqclone.Replace(str, " ");
+            }
+            //now eqclone should only have numbers
+
+            bool eqfail = false;
+            foreach (var chr in eqclone){
+                if (!char.IsDigit(chr)){
+                    eqfail = true;
+                    //retText = "ERROR: Unknown independent variable '"+chr+"' found in equation";
+                    //return false;
+                }
+            }
+            if (eqfail){
+                string s = "";
+                foreach (var chr in eqclone){
+                    if (char.IsDigit(chr)) {
+                        s += " ";
+                    }
+                    else{
+                        s += chr;
+                    }
+                }
+                var unknownVars = s.Split(' ').ToList();
+                for (int i = 0; i < unknownVars.Count(); i++){
+                    if (unknownVars[i] == ""){
+                        unknownVars.RemoveAt(i);
+                        i--;
+                    }
+                }
+                string errTxt = "";
+                foreach (var unknownVar in unknownVars){
+                    errTxt +=unknownVar + ", ";
+                }
+                retText = "ERROR: Unknown independent variables found: " + errTxt;
+                return false;
+            }
 
             retText = "";
             return true;
