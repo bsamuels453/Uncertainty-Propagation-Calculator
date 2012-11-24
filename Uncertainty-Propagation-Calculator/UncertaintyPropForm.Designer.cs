@@ -140,9 +140,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(8, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(248, 13);
+            this.label3.Size = new System.Drawing.Size(270, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Equation Entry (equation result must be on left side)";
+            this.label3.Text = "Equation Entry (dependent variable must be on left side)";
             // 
             // EquationEntryTextBox
             // 
