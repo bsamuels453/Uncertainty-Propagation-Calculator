@@ -91,10 +91,29 @@ namespace Uncertainty_Propagation_Calculator{
                 return;
             }
             DataInputErrLabel.Visible = false;
+
+            UncertaintyCalculator.UncertCalcInput input;
+
+            input.ApiKey = WolframApiTextBox.Text;
+            input.Equation = EquationEntryTextBox.Text;
+            input.VariableNames = new List<string>();
+            input.VariableValues = new List<double>();
+            input.VariableUncertainties = new List<double>();
+            for (int i = 0; i < VariableEntryGrid.RowCount; i++){
+                if (VariableEntryGrid[0, i].Value != null){
+                    input.VariableNames.Add((string)VariableEntryGrid[0, i].Value);
+                    input.VariableValues.Add(double.Parse((string)VariableEntryGrid[1, i].Value));
+                    input.VariableUncertainties.Add(double.Parse((string)VariableEntryGrid[2, i].Value));
+                }
+            }
+
+            var results = UncertaintyCalculator.Calculate(input);
+
+            int f = 3;
         }
         #endregion
 
-        bool IsVariableTableValid(out string retText){
+        bool IsVariableTableValid(out string retText) {
             var variableNames = new List<string>();
 
             int numNullRows = 0;
@@ -222,7 +241,7 @@ namespace Uncertainty_Propagation_Calculator{
 
             bool eqfail = false;
             foreach (var chr in eqclone){
-                if (!char.IsDigit(chr)){
+                if (!char.IsDigit(chr) && chr != ' '){
                     eqfail = true;
                     //retText = "ERROR: Unknown independent variable '"+chr+"' found in equation";
                     //return false;
@@ -256,22 +275,6 @@ namespace Uncertainty_Propagation_Calculator{
             retText = "";
             return true;
         }
-
-
-        /*
-        string equation = EquationEntryTextBox.Text;
-
-        //split equation into two sides
-        var sides = equation.Split('=');
-        var leftSide = sides[0] + "=";
-        var rightSide = sides[1];
-
-        var symbolAliases = ExpressionManip.GenerateEquationAliases(rightSide);
-
-        string aliasEquation = ExpressionManip.ConvertSymbolsIntoAliases(symbolAliases, rightSide);
-
-        var solver = new WolframEvaluator(WolframApiTextBox.Text);
-        */
 
     }
 }
