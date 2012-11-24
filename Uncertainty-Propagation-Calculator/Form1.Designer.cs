@@ -131,9 +131,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(386, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(201, 13);
+            this.label2.Size = new System.Drawing.Size(264, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Variable Entry (Scientific notation is okay)";
+            this.label2.Text = "Independent Variable Entry (Scientific notation is okay)";
             // 
             // label3
             // 
@@ -382,11 +382,11 @@
             // DataInputErrLabel
             // 
             this.DataInputErrLabel.AutoSize = true;
-            this.DataInputErrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DataInputErrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataInputErrLabel.ForeColor = System.Drawing.Color.Red;
             this.DataInputErrLabel.Location = new System.Drawing.Point(9, 318);
             this.DataInputErrLabel.Name = "DataInputErrLabel";
-            this.DataInputErrLabel.Size = new System.Drawing.Size(169, 16);
+            this.DataInputErrLabel.Size = new System.Drawing.Size(179, 20);
             this.DataInputErrLabel.TabIndex = 24;
             this.DataInputErrLabel.Text = "Data Input Error Prompt";
             this.DataInputErrLabel.Visible = false;
