@@ -150,7 +150,7 @@
             this.EquationEntryTextBox.Location = new System.Drawing.Point(12, 73);
             this.EquationEntryTextBox.Multiline = true;
             this.EquationEntryTextBox.Name = "EquationEntryTextBox";
-            this.EquationEntryTextBox.Size = new System.Drawing.Size(368, 117);
+            this.EquationEntryTextBox.Size = new System.Drawing.Size(368, 57);
             this.EquationEntryTextBox.TabIndex = 6;
             // 
             // EqationInputFmtDropdown
@@ -415,21 +415,21 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(11, 171);
+            this.button1.Location = new System.Drawing.Point(11, 132);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(60, 19);
             this.button1.TabIndex = 31;
             this.button1.Text = "Render";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1Click);
+            this.button1.Click += new System.EventHandler(this.RenderButClick);
             // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(11, 196);
+            this.panel1.Location = new System.Drawing.Point(11, 153);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(368, 115);
+            this.panel1.Size = new System.Drawing.Size(368, 159);
             this.panel1.TabIndex = 32;
             // 
             // pictureBox1

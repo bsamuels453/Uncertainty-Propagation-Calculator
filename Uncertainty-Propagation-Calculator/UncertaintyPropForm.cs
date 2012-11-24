@@ -13,6 +13,12 @@ using PdfToImage;
 #endregion
 
 namespace Uncertainty_Propagation_Calculator{
+    /// <summary>
+    /// Most of the business end of the program that does all the uncertainty prop
+    /// stuff are semi-pure classes. This includes ExpressionManip, 
+    /// LibreMathConverter, and LatexConverter. UncertaintyCalculator is kinda pure in that it's purely an 
+    /// input-output helper class, however it calls very unpure code like WolframEvaluator.
+    /// </summary>
     public partial class UncertaintyPropForm : Form{
         readonly LatexToImg _latexConverter;
         readonly string[] _symbolBlacklist= new []{"+", "*", "-", "/", "^", ".", "ln", "log", "e", "(", ")"};
@@ -67,18 +73,19 @@ namespace Uncertainty_Propagation_Calculator{
             pictureBox1.ImageLocation = Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\formula.jpg";
         }
 
-        void Button1Click(object sender, EventArgs e) {
-            _latexConverter.QueueNewUpdate(EquationEntryTextBox.Text);
+        void RenderButClick(object sender, EventArgs e) {
+            string s = LatexConverter.ConvertExpressionToLatex(EquationEntryTextBox.Text);
+            _latexConverter.QueueNewUpdate(s);
         }
 
         void CalculateButClick(object sender, EventArgs e) {
             string s;
-            if (!IsVariableTableValid(out s)) {
+            if (!IsFormulaValid(out s)) {
                 DataInputErrLabel.Text = s;
                 DataInputErrLabel.Visible = true;
                 return;
             }
-            if (!IsFormulaValid(out s)){
+            if (!IsVariableTableValid(out s)) {
                 DataInputErrLabel.Text = s;
                 DataInputErrLabel.Visible = true;
                 return;
