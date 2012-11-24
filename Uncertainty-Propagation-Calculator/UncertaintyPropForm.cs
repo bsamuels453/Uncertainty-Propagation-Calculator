@@ -21,7 +21,7 @@ namespace Uncertainty_Propagation_Calculator{
     /// </summary>
     public partial class UncertaintyPropForm : Form{
         readonly LatexToImg _latexConverter;
-        readonly string[] _symbolBlacklist= new []{"+", "*", "-", "/", "^", ".", "ln", "log", "e", "(", ")"};
+        readonly string[] _symbolBlacklist= new []{"+", "*", "-", "/", "^", ".", "n", "l", "log", "e", "(", ")"};
 
         public UncertaintyPropForm(){
             InitializeComponent();
@@ -97,17 +97,36 @@ namespace Uncertainty_Propagation_Calculator{
             input.ApiKey = WolframApiTextBox.Text;
             input.Equation = EquationEntryTextBox.Text;
             input.VariableNames = new List<string>();
-            input.VariableValues = new List<double>();
-            input.VariableUncertainties = new List<double>();
+            input.VariableValues = new List<string>();
+            input.VariableUncertainties = new List<string>();
             for (int i = 0; i < VariableEntryGrid.RowCount; i++){
                 if (VariableEntryGrid[0, i].Value != null){
+                    string val = ((string)VariableEntryGrid[1, i].Value).Replace("*10^", "E");
+                    string uncertainty = ((string)VariableEntryGrid[2, i].Value).Replace("*10^", "E");
+
                     input.VariableNames.Add((string)VariableEntryGrid[0, i].Value);
-                    input.VariableValues.Add(double.Parse((string)VariableEntryGrid[1, i].Value));
-                    input.VariableUncertainties.Add(double.Parse((string)VariableEntryGrid[2, i].Value));
+                    input.VariableValues.Add(val);
+                    input.VariableUncertainties.Add(uncertainty);
                 }
             }
 
             var results = UncertaintyCalculator.Calculate(input);
+            PartialDerivsGrid.Enabled = true;
+            PlugPartialDerivGrid.Enabled = true;
+            FinalPropEquationField.Enabled = true;
+
+            PartialDerivsGrid.RowCount = results.PartialDerivs.Count();
+            PlugPartialDerivGrid.RowCount = results.PartialDerivs.Count();
+            
+            for (int i = 0; i < results.PartialDerivs.Count(); i++){
+                PartialDerivsGrid[0, i].Value = results.PartialDerivs[i];
+                PlugPartialDerivGrid[0, i].Value = results.PluggedPartialDerivs[i];
+            }
+
+            PartialDerivsGrid.ClearSelection();
+            PlugPartialDerivGrid.ClearSelection();
+
+            FinalPropEquationField.Text = results.PropEquation;
         }
         #endregion
 
