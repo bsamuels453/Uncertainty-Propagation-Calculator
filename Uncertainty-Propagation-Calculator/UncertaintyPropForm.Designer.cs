@@ -1,5 +1,5 @@
 ﻿namespace Uncertainty_Propagation_Calculator {
-    partial class Form1 {
+    partial class UncertaintyPropForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -441,7 +441,7 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // UncertaintyPropForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -469,7 +469,7 @@
             this.Controls.Add(this.VariableEntryGrid);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.WolframApiTextBox);
-            this.Name = "Form1";
+            this.Name = "UncertaintyPropForm";
             this.Text = "Uncertainty Propagation Calculator";
             ((System.ComponentModel.ISupportInitialize)(this.VariableEntryGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PartialDerivsGrid)).EndInit();

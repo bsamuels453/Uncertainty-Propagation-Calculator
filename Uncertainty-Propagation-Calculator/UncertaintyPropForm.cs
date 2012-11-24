@@ -13,11 +13,11 @@ using PdfToImage;
 #endregion
 
 namespace Uncertainty_Propagation_Calculator{
-    public partial class Form1 : Form{
+    public partial class UncertaintyPropForm : Form{
         readonly LatexToImg _latexConverter;
         readonly string[] _symbolBlacklist= new []{"+", "*", "-", "/", "^", ".", "ln", "log", "e", "(", ")"};
 
-        public Form1(){
+        public UncertaintyPropForm(){
             InitializeComponent();
 
             EqationInputFmtDropdown.SelectedItem = "Normal (Calculator Style)";
@@ -78,13 +78,12 @@ namespace Uncertainty_Propagation_Calculator{
                 DataInputErrLabel.Visible = true;
                 return;
             }
-            DataInputErrLabel.Visible = false;
-
             if (!IsFormulaValid(out s)){
                 DataInputErrLabel.Text = s;
                 DataInputErrLabel.Visible = true;
                 return;
             }
+            DataInputErrLabel.Visible = false;
         }
         #endregion
 
