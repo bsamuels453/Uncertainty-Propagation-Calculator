@@ -21,7 +21,7 @@ namespace Uncertainty_Propagation_Calculator{
     /// </summary>
     public partial class UncertaintyPropForm : Form{
         readonly LatexToImg _latexConverter;
-        readonly string[] _symbolBlacklist= new []{"+", "*", "-", "/", "^", ".", "n", "l", "log", "e", "(", ")"};
+        readonly string[] _symbolBlacklist = new[]{"+", "*", "-", "/", "^", ".", "n", "l", "log", "e", "(", ")"};
 
         public UncertaintyPropForm(){
             InitializeComponent();
@@ -41,6 +41,7 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         #region handle ui stuff
+
         void GetKeyButClick(object sender, EventArgs e){
             const string target1 = "https://developer.wolframalpha.com/portal/apisignup.html";
             try{
@@ -61,7 +62,7 @@ namespace Uncertainty_Propagation_Calculator{
             prc.Start();
         }
 
-        void SaveKeyButClick(object sender, EventArgs e) {
+        void SaveKeyButClick(object sender, EventArgs e){
             string key = WolframApiTextBox.Text;
             var sw = new StreamWriter("apikey.txt", false);
             sw.Write(key);
@@ -73,19 +74,19 @@ namespace Uncertainty_Propagation_Calculator{
             pictureBox1.ImageLocation = Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\formula.jpg";
         }
 
-        void RenderButClick(object sender, EventArgs e) {
+        void RenderButClick(object sender, EventArgs e){
             string s = LatexConverter.ToLatex(EquationEntryTextBox.Text);
             _latexConverter.QueueNewUpdate(s);
         }
 
-        void CalculateButClick(object sender, EventArgs e) {
+        void CalculateButClick(object sender, EventArgs e){
             string s;
-            if (!IsFormulaValid(out s)) {
+            if (!IsFormulaValid(out s)){
                 DataInputErrLabel.Text = s;
                 DataInputErrLabel.Visible = true;
                 return;
             }
-            if (!IsVariableTableValid(out s)) {
+            if (!IsVariableTableValid(out s)){
                 DataInputErrLabel.Text = s;
                 DataInputErrLabel.Visible = true;
                 return;
@@ -101,10 +102,10 @@ namespace Uncertainty_Propagation_Calculator{
             input.VariableUncertainties = new List<string>();
             for (int i = 0; i < VariableEntryGrid.RowCount; i++){
                 if (VariableEntryGrid[0, i].Value != null){
-                    string val = ((string)VariableEntryGrid[1, i].Value).Replace("*10^", "E");
-                    string uncertainty = ((string)VariableEntryGrid[2, i].Value).Replace("*10^", "E");
+                    string val = ((string) VariableEntryGrid[1, i].Value).Replace("*10^", "E");
+                    string uncertainty = ((string) VariableEntryGrid[2, i].Value).Replace("*10^", "E");
 
-                    input.VariableNames.Add((string)VariableEntryGrid[0, i].Value);
+                    input.VariableNames.Add((string) VariableEntryGrid[0, i].Value);
                     input.VariableValues.Add(val);
                     input.VariableUncertainties.Add(uncertainty);
                 }
@@ -117,7 +118,7 @@ namespace Uncertainty_Propagation_Calculator{
 
             PartialDerivsGrid.RowCount = results.PartialDerivs.Count();
             PlugPartialDerivGrid.RowCount = results.PartialDerivs.Count();
-            
+
             for (int i = 0; i < results.PartialDerivs.Count(); i++){
                 PartialDerivsGrid[0, i].Value = results.PartialDerivs[i];
                 PlugPartialDerivGrid[0, i].Value = results.PluggedPartialDerivs[i];
@@ -128,16 +129,17 @@ namespace Uncertainty_Propagation_Calculator{
 
             FinalPropEquationField.Text = results.PropEquation;
         }
+
         #endregion
 
-        bool IsVariableTableValid(out string retText) {
+        bool IsVariableTableValid(out string retText){
             var variableNames = new List<string>();
 
             int numNullRows = 0;
             for (int i = 0; i < VariableEntryGrid.RowCount; i++){
                 //check for empty cells
                 //skip empty rows
-                if (VariableEntryGrid[0, i].Value == null && VariableEntryGrid[1, i].Value == null && VariableEntryGrid[2, i].Value == null) {
+                if (VariableEntryGrid[0, i].Value == null && VariableEntryGrid[1, i].Value == null && VariableEntryGrid[2, i].Value == null){
                     numNullRows++;
                     continue;
                 }
@@ -150,7 +152,7 @@ namespace Uncertainty_Propagation_Calculator{
                     }
                 }
 
-                string variableName = (string)VariableEntryGrid[0, i].Value;
+                string variableName = (string) VariableEntryGrid[0, i].Value;
                 variableNames.Add(variableName);
 
                 foreach (var s in _symbolBlacklist){
@@ -168,17 +170,17 @@ namespace Uncertainty_Propagation_Calculator{
 
                 double _;
                 //first value column
-                string sciNotFix = (string)(VariableEntryGrid[1, i].Value);
+                string sciNotFix = (string) (VariableEntryGrid[1, i].Value);
                 sciNotFix = sciNotFix.Replace("*10^", "E");
-                if(!double.TryParse(sciNotFix, out _)){
+                if (!double.TryParse(sciNotFix, out _)){
                     retText = "ERROR: Row " + i + "'s variable value is invalid, it should be a number";
                     return false;
                 }
 
                 //second value column
-                sciNotFix = (string)(VariableEntryGrid[2, i].Value);
+                sciNotFix = (string) (VariableEntryGrid[2, i].Value);
                 sciNotFix = sciNotFix.Replace("*10^", "E");
-                if (!double.TryParse(sciNotFix, out _)) {
+                if (!double.TryParse(sciNotFix, out _)){
                     retText = "ERROR: Row " + i + "'s uncertainty value is invalid, it should be a number";
                     return false;
                 }
@@ -190,9 +192,9 @@ namespace Uncertainty_Propagation_Calculator{
             }
 
             //now make sure none of the variable names contain substrings of other variable names
-            foreach (var varName in variableNames) {
-                foreach (var varNameToSub in variableNames) {
-                    if (varName.Contains(varNameToSub) && varName != varNameToSub) {
+            foreach (var varName in variableNames){
+                foreach (var varNameToSub in variableNames){
+                    if (varName.Contains(varNameToSub) && varName != varNameToSub){
                         retText = "ERROR: Variable " + varName + " contains an substring identical to variable " + varNameToSub;
                         return false;
                     }
@@ -203,7 +205,7 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         bool IsFormulaValid(out string retText){
-            string equation = (string)EquationEntryTextBox.Text;
+            string equation = (string) EquationEntryTextBox.Text;
 
             //count brackets
             int numBrackets = 0;
@@ -211,7 +213,7 @@ namespace Uncertainty_Propagation_Calculator{
                 if (chr == '('){
                     numBrackets++;
                 }
-                if (chr == ')') {
+                if (chr == ')'){
                     numBrackets--;
                 }
             }
@@ -235,11 +237,11 @@ namespace Uncertainty_Propagation_Calculator{
             //now make sure all the variables entered in the table exist in the equation
             var variableNames = new List<string>();
             var sides = equation.Split('=');
-            string eqclone = (string)sides[1].Clone();
+            string eqclone = (string) sides[1].Clone();
 
             for (int i = 0; i < VariableEntryGrid.RowCount; i++){
                 if (VariableEntryGrid[0, i].Value != null){
-                    variableNames.Add((string)VariableEntryGrid[0, i].Value);
+                    variableNames.Add((string) VariableEntryGrid[0, i].Value);
                 }
             }
 
@@ -267,7 +269,7 @@ namespace Uncertainty_Propagation_Calculator{
             if (eqfail){
                 string s = "";
                 foreach (var chr in eqclone){
-                    if (char.IsDigit(chr)) {
+                    if (char.IsDigit(chr)){
                         s += " ";
                     }
                     else{
@@ -283,7 +285,7 @@ namespace Uncertainty_Propagation_Calculator{
                 }
                 string errTxt = "";
                 foreach (var unknownVar in unknownVars){
-                    errTxt +=unknownVar + ", ";
+                    errTxt += unknownVar + ", ";
                 }
                 retText = "ERROR: Unknown independent variables found: " + errTxt;
                 return false;
@@ -292,6 +294,117 @@ namespace Uncertainty_Propagation_Calculator{
             retText = "";
             return true;
         }
+        void button4_Click(object sender, EventArgs e) {
+            GreekSymbolPanel.Visible = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            GreekSymbolPanel.Visible = true;
+        }
+
+        //todo: make this stuff load from a json file
+        #region based hardcoding
+
+        void button5_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("ρ");
+        }
+
+        void button6_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("π");
+        }
+
+        void button7_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("Ω");
+        }
+
+        void button8_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("Δ");
+        }
+
+        void button9_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("δ");
+        }
+
+        void button10_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("α");
+        }
+
+        void button11_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("μ");
+        }
+
+        void button12_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("ω");
+        }
+
+        void button13_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("θ");
+        }
+
+        void button14_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("κ");
+        }
+
+        void button15_Click(object sender, EventArgs e){
+
+            Clipboard.SetText("σ");
+        }
+
+        void button16_Click(object sender, EventArgs e){
+            Clipboard.SetText("β");
+        }
+
+        void button17_Click(object sender, EventArgs e){
+            Clipboard.SetText("γ");
+        }
+
+        void button18_Click(object sender, EventArgs e){
+            Clipboard.SetText("η");
+        }
+
+        void button19_Click(object sender, EventArgs e){
+            Clipboard.SetText("λ");
+        }
+
+        void button20_Click(object sender, EventArgs e){
+            Clipboard.SetText("ν");
+        }
+
+        void button21_Click(object sender, EventArgs e){
+            Clipboard.SetText("ξ");
+        }
+
+        void button22_Click(object sender, EventArgs e){
+            Clipboard.SetText("τ");
+        }
+
+        void button23_Click(object sender, EventArgs e){
+            Clipboard.SetText("υ");
+        }
+
+        void button24_Click(object sender, EventArgs e){
+            Clipboard.SetText("φ");
+        }
+
+        void button25_Click(object sender, EventArgs e){
+            Clipboard.SetText("ψ");
+        }
+
+        void button26_Click(object sender, EventArgs e){
+            Clipboard.SetText("ε");
+        }
+
+        #endregion
 
     }
 }
