@@ -107,39 +107,41 @@ namespace Uncertainty_Propagation_Calculator{
                 }
 
                 int totalBrackets = 0;
-                while (true){
-                    //first try character based termination
-                    if (terminatingChars.Contains(equation[index])){
-                        if (!ignoreCharacterTermination){
+                if (index < equation.Count()){
+                    while (true){
+                        //first try character based termination
+                        if (terminatingChars.Contains(equation[index])){
+                            if (!ignoreCharacterTermination){
+                                break;
+                            }
+                        }
+
+                        //now try bracket based termination
+                        if (equation[index] == beginningBracket){
+                            if (!ignoreBracketTermination){
+                                totalBrackets++;
+                            }
+                        }
+
+                        if (equation[index] == endingBracket){
+                            if (!ignoreBracketTermination){
+                                totalBrackets--;
+                            }
+                        }
+
+                        if (totalBrackets < 0){
+                            //index -= increment;
                             break;
                         }
-                    }
 
-                    //now try bracket based termination
-                    if (equation[index] == beginningBracket){
-                        if (!ignoreBracketTermination){
-                            totalBrackets++;
+                        //nothing interesting, loop again
+                        if (index == limitValue - increment){
+                            index += increment;
+                            break;
                         }
-                    }
-
-                    if (equation[index] == endingBracket){
-                        if (!ignoreBracketTermination){
-                            totalBrackets--;
-                        }
-                    }
-
-                    if (totalBrackets < 0){
-                        //index -= increment;
-                        break;
-                    }
-
-                    //nothing interesting, loop again
-                    if (index == limitValue - increment){
+                        //firstCharacterException = false;
                         index += increment;
-                        break;
                     }
-                    //firstCharacterException = false;
-                    index += increment;
                 }
                 if (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft){
                     retStruct.EndIndex = splitIndex;
@@ -312,7 +314,7 @@ namespace Uncertainty_Propagation_Calculator{
 
             //blacklist:
             //ln, log, e
-            const string alphabet = "abcdfhijkmpqrstuvwxyz";
+            const string alphabet = "abcfhijkmpqrstuvwxyz";
 
             //todo: get rid of 3 character limitation on symbol names
             for (int i = 0; i < symbolList.Count(); i++){
