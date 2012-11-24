@@ -4,7 +4,7 @@ namespace Uncertainty_Propagation_Calculator{
     internal class LatexConverter{
 
 
-        public static string ConvertExpressionToLatex(string expression){
+        public static string ToLatex(string expression){
             //  / greek
             int pos;
             while ((pos = expression.IndexOf('/')) != -1) {

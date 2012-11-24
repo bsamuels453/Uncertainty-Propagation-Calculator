@@ -74,7 +74,7 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         void RenderButClick(object sender, EventArgs e) {
-            string s = LatexConverter.ConvertExpressionToLatex(EquationEntryTextBox.Text);
+            string s = LatexConverter.ToLatex(EquationEntryTextBox.Text);
             _latexConverter.QueueNewUpdate(s);
         }
 
