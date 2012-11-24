@@ -1,5 +1,4 @@
 -fix ln/logs in PlugIntoEquationAndSolve()
--change libre formatter to use new string manip lib
 -output images
 -validation for keys
 -xml validation
