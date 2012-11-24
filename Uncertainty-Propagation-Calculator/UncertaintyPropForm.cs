@@ -108,8 +108,6 @@ namespace Uncertainty_Propagation_Calculator{
             }
 
             var results = UncertaintyCalculator.Calculate(input);
-
-            int f = 3;
         }
         #endregion
 
