@@ -1,10 +1,10 @@
--fix ln/logs in PlugIntoEquationAndSolve()
 -output images
 -xml validation
 -significant digits
 -normal output format 
 -latex input format
 -latex output format
+-multichar vars cleanup
 -output text stuff with images
 -error output for wolfram
 
