@@ -53,7 +53,7 @@
             this.DataInputErrLabel = new System.Windows.Forms.Label();
             this.KeyValidityLabel = new System.Windows.Forms.Label();
             this.KeySavedLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.RenderEquationBut = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.GreekLetterBut = new System.Windows.Forms.Button();
@@ -345,13 +345,13 @@
             // 
             // CheckValidityBut
             // 
-            this.CheckValidityBut.Enabled = false;
             this.CheckValidityBut.Location = new System.Drawing.Point(178, 23);
             this.CheckValidityBut.Name = "CheckValidityBut";
             this.CheckValidityBut.Size = new System.Drawing.Size(86, 25);
             this.CheckValidityBut.TabIndex = 19;
             this.CheckValidityBut.Text = "Check Validity";
             this.CheckValidityBut.UseVisualStyleBackColor = true;
+            this.CheckValidityBut.Click += new System.EventHandler(this.CheckApikeyValidity);
             // 
             // SaveKeyBut
             // 
@@ -407,15 +407,15 @@
             this.KeySavedLabel.Text = "Key Saved";
             this.KeySavedLabel.Visible = false;
             // 
-            // button1
+            // RenderEquationBut
             // 
-            this.button1.Location = new System.Drawing.Point(11, 130);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 23);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Render Equation";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.StartEquationRender);
+            this.RenderEquationBut.Location = new System.Drawing.Point(11, 130);
+            this.RenderEquationBut.Name = "RenderEquationBut";
+            this.RenderEquationBut.Size = new System.Drawing.Size(118, 23);
+            this.RenderEquationBut.TabIndex = 31;
+            this.RenderEquationBut.Text = "Render Equation";
+            this.RenderEquationBut.UseVisualStyleBackColor = true;
+            this.RenderEquationBut.Click += new System.EventHandler(this.StartEquationRender);
             // 
             // panel1
             // 
@@ -463,7 +463,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.GreekLetterBut);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.RenderEquationBut);
             this.Controls.Add(this.KeySavedLabel);
             this.Controls.Add(this.KeyValidityLabel);
             this.Controls.Add(this.DataInputErrLabel);
@@ -531,7 +531,7 @@
         private System.Windows.Forms.DataGridView VariableEntryGrid;
         private System.Windows.Forms.Label KeyValidityLabel;
         private System.Windows.Forms.Label KeySavedLabel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button RenderEquationBut;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button GreekLetterBut;

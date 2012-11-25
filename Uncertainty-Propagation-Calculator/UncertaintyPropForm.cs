@@ -98,7 +98,7 @@ namespace Uncertainty_Propagation_Calculator{
                 return;
             }
             DataInputErrLabel.Visible = false;
-
+            _wolframEval.ApiKey = WolframApiTextBox.Text;
             UncertaintyCalculator.UncertCalcInput input;
 
             input.Equation = EquationEntryTextBox.Text;
@@ -134,6 +134,7 @@ namespace Uncertainty_Propagation_Calculator{
             VariableEntryGrid.Enabled = true;
             CalculateBut.Enabled = true;
             OpenOutputImageLocBut.Enabled = true;
+            RenderEquationBut.Enabled = true;
         }
 
         void DisableInputComponents(){
@@ -147,6 +148,7 @@ namespace Uncertainty_Propagation_Calculator{
             VariableEntryGrid.Enabled = false;
             CalculateBut.Enabled = false;
             OpenOutputImageLocBut.Enabled = false;
+            RenderEquationBut.Enabled = false;
         }
 
         void OnCalculationCompletion(UncertaintyCalculator.UncertCalcResults results){
@@ -363,5 +365,30 @@ namespace Uncertainty_Propagation_Calculator{
         delegate void OnCalculationCompletionDelegate(UncertaintyCalculator.UncertCalcResults results);
 
         #endregion
+
+        private void CheckApikeyValidity(object sender, EventArgs e) {
+            KeyValidityLabel.Visible = true;
+            KeyValidityLabel.Text = "checking validity...";
+            DisableInputComponents();
+            _wolframEval.ApiKey = WolframApiTextBox.Text;
+            var task = new Task(CheckApiKeyThrd);
+            task.Start();
+        }
+
+        void CheckApiKeyThrd(){
+            if (_wolframEval.IsKeyValid()) {
+                this.Invoke(new SetApiKeyStat(ApiKeyValidityExit), new object[] { "Key is valid" });
+            }
+            else {
+                this.Invoke(new SetApiKeyStat(ApiKeyValidityExit), new object[] { "Invalid Key" });
+            }
+        }
+
+        delegate void SetApiKeyStat(string str);
+
+        void ApiKeyValidityExit(string str){
+            EnableInputComponents();
+            KeyValidityLabel.Text = str;
+        }
     }
 }

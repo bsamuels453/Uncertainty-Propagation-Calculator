@@ -50,7 +50,12 @@ namespace Uncertainty_Propagation_Calculator{
         ///   checks whether or not a key is valid using a test query to wolframalpha.
         /// </summary>
         public bool IsKeyValid(){
-            throw new NotImplementedException();
+            var client = new WebClient();
+            string crawlerData = client.DownloadString("http://api.wolframalpha.com/v2/query?input=" + "5*5" + "&appid=" + _apiKey);
+            if(crawlerData.Contains("Invalid appid")){
+                return false;
+            }
+            return true;
         }
 
         QueryResults QueryWolfram(string query){
