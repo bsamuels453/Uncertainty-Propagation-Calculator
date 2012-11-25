@@ -2,7 +2,6 @@
 -output images
 -xml validation
 -significant digits
--reset button
 -normal output format 
 -latex input format
 -latex output format
