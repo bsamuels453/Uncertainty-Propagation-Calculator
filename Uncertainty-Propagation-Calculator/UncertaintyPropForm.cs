@@ -118,9 +118,36 @@ namespace Uncertainty_Propagation_Calculator{
 
             _calculateTask = new Task(_calculator.Calculate, input);
             _calculateTask.Start();
+            DisableInputComponents();
         }
 
         #endregion
+
+        void EnableInputComponents(){
+            WolframApiTextBox.Enabled = true;
+            CheckValidityBut.Enabled = true;
+            SaveKeyBut.Enabled = true;
+            GetKeyBut.Enabled = true;
+            button3.Enabled = true;
+            GreekLetterBut.Enabled = true;
+            EquationEntryTextBox.Enabled = true;
+            VariableEntryGrid.Enabled = true;
+            CalculateBut.Enabled = true;
+            OpenOutputImageLocBut.Enabled = true;
+        }
+
+        void DisableInputComponents(){
+            WolframApiTextBox.Enabled = false;
+            CheckValidityBut.Enabled = false;
+            SaveKeyBut.Enabled = false;
+            GetKeyBut.Enabled = false;
+            button3.Enabled = false;
+            GreekLetterBut.Enabled = false;
+            EquationEntryTextBox.Enabled = false;
+            VariableEntryGrid.Enabled = false;
+            CalculateBut.Enabled = false;
+            OpenOutputImageLocBut.Enabled = false;
+        }
 
         void OnCalculationCompletion(UncertaintyCalculator.UncertCalcResults results){
             Invoke(new OnCalculationCompletionDelegate(OnCalculationCompletionInvoke), new object[]{results});
@@ -143,6 +170,8 @@ namespace Uncertainty_Propagation_Calculator{
             PlugPartialDerivGrid.ClearSelection();
 
             FinalPropEquationField.Text = results.PropEquation;
+
+            EnableInputComponents();
         }
 
         void UpdateStatusLabel(string str, bool isError){
