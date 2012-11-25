@@ -121,14 +121,43 @@ namespace Uncertainty_Propagation_Calculator{
             DisableInputComponents();
         }
 
+        private void CheckApikeyValidity(object sender, EventArgs e) {
+            KeyValidityLabel.Visible = true;
+            KeyValidityLabel.Text = "checking validity...";
+            DisableInputComponents();
+            _wolframEval.ApiKey = WolframApiTextBox.Text;
+            var task = new Task(CheckApiKeyThrd);
+            task.Start();
+        }
+
+        private void ResetFields(object sender, EventArgs e) {
+            EquationEntryTextBox.Text = "";
+            FinalPropEquationField.Text = "";
+            for (int row = 0; row < VariableEntryGrid.RowCount; row++){
+                for (int col = 0; col < VariableEntryGrid.ColumnCount; col++){
+                    VariableEntryGrid[col, row].Value = "";
+                }
+            }
+            for (int row = 0; row < PartialDerivsGrid.RowCount; row++) {
+                for (int col = 0; col < PartialDerivsGrid.ColumnCount; col++) {
+                    PartialDerivsGrid[col, row].Value = "";
+                }
+            }
+            for (int row = 0; row < PlugPartialDerivGrid.RowCount; row++) {
+                for (int col = 0; col < PlugPartialDerivGrid.ColumnCount; col++) {
+                    PlugPartialDerivGrid[col, row].Value = "";
+                }
+            }
+        }
+
         #endregion
 
-        void EnableInputComponents(){
+        void EnableInputComponents() {
             WolframApiTextBox.Enabled = true;
             CheckValidityBut.Enabled = true;
             SaveKeyBut.Enabled = true;
             GetKeyBut.Enabled = true;
-            button3.Enabled = true;
+            ClearIOBut.Enabled = true;
             GreekLetterBut.Enabled = true;
             EquationEntryTextBox.Enabled = true;
             VariableEntryGrid.Enabled = true;
@@ -142,7 +171,7 @@ namespace Uncertainty_Propagation_Calculator{
             CheckValidityBut.Enabled = false;
             SaveKeyBut.Enabled = false;
             GetKeyBut.Enabled = false;
-            button3.Enabled = false;
+            ClearIOBut.Enabled = false;
             GreekLetterBut.Enabled = false;
             EquationEntryTextBox.Enabled = false;
             VariableEntryGrid.Enabled = false;
@@ -366,14 +395,7 @@ namespace Uncertainty_Propagation_Calculator{
 
         #endregion
 
-        private void CheckApikeyValidity(object sender, EventArgs e) {
-            KeyValidityLabel.Visible = true;
-            KeyValidityLabel.Text = "checking validity...";
-            DisableInputComponents();
-            _wolframEval.ApiKey = WolframApiTextBox.Text;
-            var task = new Task(CheckApiKeyThrd);
-            task.Start();
-        }
+
 
         void CheckApiKeyThrd(){
             if (_wolframEval.IsKeyValid()) {
@@ -390,5 +412,6 @@ namespace Uncertainty_Propagation_Calculator{
             EnableInputComponents();
             KeyValidityLabel.Text = str;
         }
+
     }
 }
