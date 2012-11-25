@@ -7,6 +7,16 @@
 -multichar vars cleanup
 -output text stuff with images
 -error output for wolfram
+-cleario clears formula and disables output
+-size modifier selection
+-answer to plugged eqs added
+-cancel button
+-change output directories to appdata and stuff
 
 cleanliness stuff
 -clean up uncertaintycalculator.cs's for loops
+
+post release features
+-saving all requests and their results
+-outputting values of results
+-outputting resultant formula
