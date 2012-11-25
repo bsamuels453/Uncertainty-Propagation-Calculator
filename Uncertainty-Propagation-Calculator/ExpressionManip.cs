@@ -32,6 +32,13 @@ namespace Uncertainty_Propagation_Calculator{
             int increment;
             int limitValue;
 
+            if (splitIndex == 0 && (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft)){
+                retStruct.EndIndex = 0;
+                retStruct.StartIndex = 0;
+                retStruct.Segment = "";
+                return retStruct;
+            }
+
             if (sideToGet == SplitType.LeftSide || sideToGet == SplitType.ExponentLeft){
                 beginningBracket = ')';
                 endingBracket = '(';
