@@ -16,7 +16,7 @@ namespace Uncertainty_Propagation_Calculator{
     public partial class UncertaintyPropForm : Form{
         readonly UncertaintyCalculator _calculator;
         readonly LatexToImg _latexConverter;
-        readonly string[] _symbolBlacklist = new[]{"+", "*", "-", "/", "^", ".", "n", "l", "log", "e", "(", ")"};
+        readonly string[] _symbolBlacklist = new[]{"+", "*", "-", "/", "^", ".", "ln","log", "e", "(", ")"};
         readonly WolframEvaluator _wolframEval;
         Task _calculateTask;
 
@@ -118,6 +118,7 @@ namespace Uncertainty_Propagation_Calculator{
 
             _calculateTask = new Task(_calculator.Calculate, input);
             _calculateTask.Start();
+            //_calculator.Calculate(input);
             DisableInputComponents();
         }
 

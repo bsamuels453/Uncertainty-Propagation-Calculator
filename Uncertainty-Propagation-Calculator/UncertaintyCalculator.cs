@@ -37,12 +37,27 @@ namespace Uncertainty_Propagation_Calculator{
             string[] partialDerivs = new string[symbolAliases.Count];
             var dependentVariables = new char[symbolAliases.Count];
 
+            //need to change log to log(10,x)
+            //convert log to log base 10
+            string wolframEquation;
+            wolframEquation = aliasEquation.Replace("log", "&"); //placeholder character
+            int pos;
+            while ((pos = wolframEquation.IndexOf('&')) != -1){
+                var right = ExpressionManip.SplitEquation(wolframEquation, pos, ExpressionManip.SplitType.RightSide);
+                var left = ExpressionManip.SplitEquation(wolframEquation, pos, ExpressionManip.SplitType.LeftSide);
+
+                wolframEquation = wolframEquation.Remove(left.StartIndex, right.EndIndex - left.StartIndex);
+                wolframEquation = wolframEquation.Insert(left.StartIndex, "Log(10," + right.Segment + ")");
+            }
+
+
+
 
             StatusUpdate("Beginning wolfram alpha queries");
             int si = 0;
             foreach (var reference in symbolAliases) {
-                StatusUpdate("Sending query " + si+1 + " of " + symbolAliases.Count+"...");
-                partialDerivs[si] = _wolframEval.CalculatePartialDeriv(aliasEquation, reference.Value[0]);
+                StatusUpdate("Sending query " + (si+1) + " of " + symbolAliases.Count+"...");
+                partialDerivs[si] = _wolframEval.CalculatePartialDeriv(wolframEquation, reference.Value[0]);
                 dependentVariables[si] = reference.Value[0];
                 si++;
                 StatusUpdate("Response recieved");
@@ -57,6 +72,11 @@ namespace Uncertainty_Propagation_Calculator{
                         partialDerivs[i] = partialDerivs[i].Insert(letter + 1, "*");
                     }
                 }
+            }
+
+            //when wolfram alpha returns "log", it actually means "ln"
+            for (int i = 0; i < partialDerivs.Length; i++) { 
+                partialDerivs[i] = partialDerivs[i].Replace("log", "ln");
             }
 
             for (int i = 0; i < partialDerivs.Length; i++) {
@@ -152,8 +172,7 @@ namespace Uncertainty_Propagation_Calculator{
                 //go through the equation and convert everything to floating point if it isnt already
                 //toEval = ExpressionManip.ConvertEquationIntsToFloats(toEval);
 
-                //now we need to convert power function (x^n) to Pow(x,n)
-                //toEval = PowerConversion(toEval);
+                //convert power function (^) to Pow
                 int pos;
                 while ((pos = toEval.IndexOf('^')) != -1) {
                     var right = ExpressionManip.SplitEquation(toEval, pos, ExpressionManip.SplitType.ExponentRight);
@@ -162,17 +181,27 @@ namespace Uncertainty_Propagation_Calculator{
                     toEval = toEval.Remove(left.StartIndex, right.EndIndex - left.StartIndex);
                     toEval = toEval.Insert(left.StartIndex, "Pow(" + left.Segment + "," + right.Segment + ")");
                 }
+
+                //convert natural log to Log base e
+                toEval = toEval.Replace("ln", "&"); //placeholder character
+                while ((pos = toEval.IndexOf('&')) != -1) {
+                    var right = ExpressionManip.SplitEquation(toEval, pos, ExpressionManip.SplitType.RightSide);
+                    var left = ExpressionManip.SplitEquation(toEval, pos, ExpressionManip.SplitType.LeftSide);
+
+                    toEval = toEval.Remove(left.EndIndex, right.EndIndex - left.EndIndex);
+                    toEval = toEval.Insert(left.EndIndex, "Log(" + right.Segment + "," + Math.E + ")");
+                }
+
+                //convert log to log base 10
                 toEval = toEval.Replace("log", "&"); //placeholder character
                 while ((pos = toEval.IndexOf('&')) != -1) {
                     var right = ExpressionManip.SplitEquation(toEval, pos, ExpressionManip.SplitType.RightSide);
                     var left = ExpressionManip.SplitEquation(toEval, pos, ExpressionManip.SplitType.LeftSide);
 
-                    toEval = toEval.Remove(left.StartIndex, right.EndIndex - left.StartIndex);
-                    toEval = toEval.Insert(left.StartIndex, "Log(" + left.Segment + "," + Math.E + ")");
+                    toEval = toEval.Remove(left.EndIndex, right.EndIndex - left.EndIndex);
+                    toEval = toEval.Insert(left.EndIndex, "Log(" + right.Segment + "," + 10 + ")");
                 }
 
-
-                //toEval = toEval.Replace("log", "Log10");//xxx FIX THIS SHIT FOR LOGS
 
                 var e = new Expression(toEval, EvaluateOptions.None);
                 solutions[i] = e.Evaluate().ToString();
