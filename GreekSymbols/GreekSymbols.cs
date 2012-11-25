@@ -114,6 +114,12 @@ namespace GreekSymbols {
             Clipboard.SetText("ε");
         }
 
+        private void button1_Click(object sender, EventArgs e) {
+            Clipboard.SetText("±");
+        }
+
         #endregion
+
+
     }
 }

@@ -25,6 +25,10 @@
         private void InitializeComponent() {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox23 = new System.Windows.Forms.TextBox();
             this.panel24 = new System.Windows.Forms.Panel();
             this.button26 = new System.Windows.Forms.Button();
             this.label28 = new System.Windows.Forms.Label();
@@ -118,6 +122,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel24.SuspendLayout();
             this.panel23.SuspendLayout();
             this.panel22.SuspendLayout();
@@ -166,6 +171,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel24, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel23, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.panel22, 4, 3);
@@ -199,6 +205,46 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(504, 240);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBox23);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(205, 193);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(92, 42);
+            this.panel1.TabIndex = 44;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(33, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(41, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Copy";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "pluseq";
+            // 
+            // textBox23
+            // 
+            this.textBox23.Location = new System.Drawing.Point(3, 16);
+            this.textBox23.Name = "textBox23";
+            this.textBox23.ReadOnly = true;
+            this.textBox23.Size = new System.Drawing.Size(24, 20);
+            this.textBox23.TabIndex = 0;
+            this.textBox23.Text = "±";
             // 
             // panel24
             // 
@@ -1027,9 +1073,9 @@
             this.label8.Dock = System.Windows.Forms.DockStyle.Top;
             this.label8.Location = new System.Drawing.Point(0, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(16, 13);
+            this.label8.Size = new System.Drawing.Size(15, 13);
             this.label8.TabIndex = 1;
-            this.label8.Text = "Pi";
+            this.label8.Text = "pi";
             // 
             // textBox2
             // 
@@ -1067,9 +1113,9 @@
             this.label7.Dock = System.Windows.Forms.DockStyle.Top;
             this.label7.Location = new System.Drawing.Point(0, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(27, 13);
+            this.label7.Size = new System.Drawing.Size(22, 13);
             this.label7.TabIndex = 1;
-            this.label7.Text = "Rho";
+            this.label7.Text = "rho";
             // 
             // textBox1
             // 
@@ -1103,6 +1149,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel24.ResumeLayout(false);
             this.panel24.PerformLayout();
             this.panel23.ResumeLayout(false);
@@ -1245,6 +1293,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel GreekSymbolPanel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox23;
     }
 }
 
