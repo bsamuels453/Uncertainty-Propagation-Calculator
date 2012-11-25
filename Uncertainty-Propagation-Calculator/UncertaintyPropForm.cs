@@ -4,24 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using PdfToImage;
 
 #endregion
 
 namespace Uncertainty_Propagation_Calculator{
-    /// <summary>
-    /// Most of the business end of the program that does all the uncertainty prop
-    /// stuff are semi-pure classes. This includes ExpressionManip, 
-    /// LibreMathConverter, and LatexConverter. UncertaintyCalculator is kinda pure in that it's purely an 
-    /// input-output helper class, however it calls very unpure code like WolframEvaluator.
-    /// </summary>
     public partial class UncertaintyPropForm : Form{
+        readonly UncertaintyCalculator _calculator;
         readonly LatexToImg _latexConverter;
         readonly string[] _symbolBlacklist = new[]{"+", "*", "-", "/", "^", ".", "n", "l", "log", "e", "(", ")"};
+        readonly WolframEvaluator _wolframEval;
+        Task _calculateTask;
 
         public UncertaintyPropForm(){
             InitializeComponent();
@@ -35,14 +32,25 @@ namespace Uncertainty_Propagation_Calculator{
 
 
             _latexConverter = new LatexToImg(Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\");
-            _latexConverter.OnConversionCompletion += PdfConversionCallback;
+            _latexConverter.OnConversionCompletion += RefreshEquationImage;
+
+            _wolframEval = new WolframEvaluator(WolframApiTextBox.Text);
+
+            _calculator = new UncertaintyCalculator(_wolframEval, UpdateStatusLabel, OnCalculationCompletion);
 
             _latexConverter.QueueNewUpdate(" ");
         }
 
         #region handle ui stuff
 
-        void GetKeyButClick(object sender, EventArgs e){
+        void OpenGreekSymbolList(object sender, EventArgs e){
+            Process symbols = new Process();
+
+            symbols.StartInfo.FileName = "GreekSymbols.exe";
+            symbols.Start();
+        }
+
+        void GetWolframApiKey(object sender, EventArgs e){
             const string target1 = "https://developer.wolframalpha.com/portal/apisignup.html";
             try{
                 Process.Start(target1);
@@ -56,13 +64,13 @@ namespace Uncertainty_Propagation_Calculator{
             }
         }
 
-        void OpenOutputImageLocButClick(object sender, EventArgs e){
+        void OpenOutputImageDirectory(object sender, EventArgs e){
             Process prc = new Process();
             prc.StartInfo.FileName = Directory.GetCurrentDirectory() + "/Output";
             prc.Start();
         }
 
-        void SaveKeyButClick(object sender, EventArgs e){
+        void SaveApiKey(object sender, EventArgs e){
             string key = WolframApiTextBox.Text;
             var sw = new StreamWriter("apikey.txt", false);
             sw.Write(key);
@@ -70,32 +78,29 @@ namespace Uncertainty_Propagation_Calculator{
             KeySavedLabel.Visible = true;
         }
 
-        void PdfConversionCallback(){
+        void RefreshEquationImage(){
             pictureBox1.ImageLocation = Directory.GetCurrentDirectory() + "\\LeanAndMeanPdfLatex\\bin\\win32\\formula.jpg";
         }
 
-        void RenderButClick(object sender, EventArgs e){
+        void StartEquationRender(object sender, EventArgs e){
             string s = LatexConverter.ToLatex(EquationEntryTextBox.Text);
             _latexConverter.QueueNewUpdate(s);
         }
 
-        void CalculateButClick(object sender, EventArgs e){
+        void StartPropagationCalculation(object sender, EventArgs e){
             string s;
             if (!IsFormulaValid(out s)){
-                DataInputErrLabel.Text = s;
-                DataInputErrLabel.Visible = true;
+                UpdateStatusLabel(s, true);
                 return;
             }
             if (!IsVariableTableValid(out s)){
-                DataInputErrLabel.Text = s;
-                DataInputErrLabel.Visible = true;
+                UpdateStatusLabel(s, true);
                 return;
             }
             DataInputErrLabel.Visible = false;
 
             UncertaintyCalculator.UncertCalcInput input;
 
-            input.ApiKey = WolframApiTextBox.Text;
             input.Equation = EquationEntryTextBox.Text;
             input.VariableNames = new List<string>();
             input.VariableValues = new List<string>();
@@ -111,7 +116,17 @@ namespace Uncertainty_Propagation_Calculator{
                 }
             }
 
-            var results = UncertaintyCalculator.Calculate(input);
+            _calculateTask = new Task(_calculator.Calculate, input);
+            _calculateTask.Start();
+        }
+
+        #endregion
+
+        void OnCalculationCompletion(UncertaintyCalculator.UncertCalcResults results){
+            Invoke(new OnCalculationCompletionDelegate(OnCalculationCompletionInvoke), new object[]{results});
+        }
+
+        void OnCalculationCompletionInvoke(UncertaintyCalculator.UncertCalcResults results){
             PartialDerivsGrid.Enabled = true;
             PlugPartialDerivGrid.Enabled = true;
             FinalPropEquationField.Enabled = true;
@@ -130,7 +145,20 @@ namespace Uncertainty_Propagation_Calculator{
             FinalPropEquationField.Text = results.PropEquation;
         }
 
-        #endregion
+        void UpdateStatusLabel(string str, bool isError){
+            Invoke(new LabelUpdateDelegate(UpdateStatusLabelInvoke), new object[]{str, isError});
+        }
+
+        void UpdateStatusLabelInvoke(string str, bool isError){
+            DataInputErrLabel.Visible = true;
+            if (!isError){
+                DataInputErrLabel.ForeColor = Color.Black;
+            }
+            else{
+                DataInputErrLabel.ForeColor = Color.Red;
+            }
+            DataInputErrLabel.Text = str;
+        }
 
         bool IsVariableTableValid(out string retText){
             var variableNames = new List<string>();
@@ -205,7 +233,7 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         bool IsFormulaValid(out string retText){
-            string equation = (string) EquationEntryTextBox.Text;
+            string equation = EquationEntryTextBox.Text;
 
             //count brackets
             int numBrackets = 0;
@@ -295,11 +323,16 @@ namespace Uncertainty_Propagation_Calculator{
             return true;
         }
 
-        private void button2_Click(object sender, EventArgs e) {
-            Process symbols = new Process();
+        #region Nested type: LabelUpdateDelegate
 
-            symbols.StartInfo.FileName = "GreekSymbols.exe";
-            symbols.Start();
-        }
+        delegate void LabelUpdateDelegate(string str, bool isError);
+
+        #endregion
+
+        #region Nested type: OnCalculationCompletionDelegate
+
+        delegate void OnCalculationCompletionDelegate(UncertaintyCalculator.UncertCalcResults results);
+
+        #endregion
     }
 }

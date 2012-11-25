@@ -5,9 +5,22 @@ using System.Linq;
 using NCalc;
 
 namespace Uncertainty_Propagation_Calculator{
-    internal static class UncertaintyCalculator{
+    internal class UncertaintyCalculator{
+        public delegate void CalculationStatusUpdate(string str, bool isError);
+        public delegate void OnCalculationCompletion(UncertCalcResults output);
 
-        public static UncertCalcResults Calculate(UncertCalcInput input){
+        readonly CalculationStatusUpdate _updateEvent;
+        readonly OnCalculationCompletion _onComplete;
+        readonly WolframEvaluator _wolframEval;
+
+        public UncertaintyCalculator(WolframEvaluator wolframEval, CalculationStatusUpdate callback = null, OnCalculationCompletion onCompleteCallback = null){
+            _updateEvent = callback;
+            _onComplete = onCompleteCallback;
+            _wolframEval = wolframEval;
+        }
+
+        public void Calculate(Object stateInfo) {
+            var input = (UncertCalcInput)stateInfo;
             UncertCalcResults output = new UncertCalcResults();
 
             string equation = input.Equation;
@@ -21,17 +34,20 @@ namespace Uncertainty_Propagation_Calculator{
 
             string aliasEquation = ExpressionManip.ConvertSymbolsIntoAliases(symbolAliases, rightSide);
 
-            var solver = new WolframEvaluator(input.ApiKey);
-
             string[] partialDerivs = new string[symbolAliases.Count];
             var dependentVariables = new char[symbolAliases.Count];
 
+
+            StatusUpdate("Beginning wolfram alpha queries");
             int si = 0;
             foreach (var reference in symbolAliases) {
-                partialDerivs[si] = solver.CalculatePartialDeriv(aliasEquation, reference.Value[0]);
+                StatusUpdate("Sending query " + si + " of " + symbolAliases.Count+"...");
+                partialDerivs[si] = _wolframEval.CalculatePartialDeriv(aliasEquation, reference.Value[0]);
                 dependentVariables[si] = reference.Value[0];
                 si++;
+                StatusUpdate("Response recieved");
             }
+            StatusUpdate("Finalizing calculations");
 
             //wolfram alpha does this mindblowingly retarded thing where it will change scientific notation from *10^n to x10^n
             for (int i = 0; i < partialDerivs.Length; i++) {
@@ -58,7 +74,7 @@ namespace Uncertainty_Propagation_Calculator{
 
             var symbolValues = new Dictionary<string, string>();
             for (int i = 0; i < input.VariableValues.Count; i++){
-                symbolValues.Add(input.VariableNames[i], input.VariableValues[i].ToString());
+                symbolValues.Add(input.VariableNames[i], input.VariableValues[i]);
             }
 
             string[] partialSolutions;
@@ -90,7 +106,7 @@ namespace Uncertainty_Propagation_Calculator{
 
 
             for (int i = 0; i < partialSolutions.Count(); i++){
-                dConstants[i] = double.Parse(input.VariableUncertainties[i].ToString());
+                dConstants[i] = double.Parse(input.VariableUncertainties[i]);
             }
 
             double uncertainty = 0;
@@ -109,10 +125,13 @@ namespace Uncertainty_Propagation_Calculator{
                 output.PartialDerivs[i] = "size 16{" + output.PartialDerivs[i] + "}";
                 output.PluggedPartialDerivs[i] = "size 16{" + output.PluggedPartialDerivs[i] + "}";
             }
-            return output;
+            StatusUpdate("Calculation complete");
+            if (_onComplete != null){
+                _onComplete.Invoke(output);
+            }
         }
 
-        static void PlugIntoEquationAndSolve(string[] equations, Dictionary<string,string> variableValues, out string[] pluggedEquations, out string[] solutions){
+        void PlugIntoEquationAndSolve(string[] equations, Dictionary<string,string> variableValues, out string[] pluggedEquations, out string[] solutions){
             solutions = new string[equations.Length];
             var pluggedEqs = new string[equations.Length];
 
@@ -176,8 +195,13 @@ namespace Uncertainty_Propagation_Calculator{
             pluggedEquations = pluggedEqs;
         }
 
+        void StatusUpdate(string str, bool isError=false){
+            if (_updateEvent != null){
+                _updateEvent.Invoke(str, isError);
+            }
+        }
+
         public struct UncertCalcInput{
-            public string ApiKey;
             public string Equation;
             public List<string> VariableNames;
             public List<string> VariableValues;

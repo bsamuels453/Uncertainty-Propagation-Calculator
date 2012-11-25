@@ -210,7 +210,7 @@
             this.CalculateBut.TabIndex = 12;
             this.CalculateBut.Text = "Calculate";
             this.CalculateBut.UseVisualStyleBackColor = true;
-            this.CalculateBut.Click += new System.EventHandler(this.CalculateButClick);
+            this.CalculateBut.Click += new System.EventHandler(this.StartPropagationCalculation);
             // 
             // OpenOutputImageLocBut
             // 
@@ -220,7 +220,7 @@
             this.OpenOutputImageLocBut.TabIndex = 13;
             this.OpenOutputImageLocBut.Text = "Open Output Image Location";
             this.OpenOutputImageLocBut.UseVisualStyleBackColor = true;
-            this.OpenOutputImageLocBut.Click += new System.EventHandler(this.OpenOutputImageLocButClick);
+            this.OpenOutputImageLocBut.Click += new System.EventHandler(this.OpenOutputImageDirectory);
             // 
             // PartialDerivsGrid
             // 
@@ -362,7 +362,7 @@
             this.SaveKeyBut.TabIndex = 20;
             this.SaveKeyBut.Text = "Save Key";
             this.SaveKeyBut.UseVisualStyleBackColor = true;
-            this.SaveKeyBut.Click += new System.EventHandler(this.SaveKeyButClick);
+            this.SaveKeyBut.Click += new System.EventHandler(this.SaveApiKey);
             // 
             // ProgressBar
             // 
@@ -379,7 +379,7 @@
             this.GetKeyBut.TabIndex = 23;
             this.GetKeyBut.Text = "Get Key";
             this.GetKeyBut.UseVisualStyleBackColor = true;
-            this.GetKeyBut.Click += new System.EventHandler(this.GetKeyButClick);
+            this.GetKeyBut.Click += new System.EventHandler(this.GetWolframApiKey);
             // 
             // DataInputErrLabel
             // 
@@ -423,7 +423,7 @@
             this.button1.TabIndex = 31;
             this.button1.Text = "Render Equation";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.RenderButClick);
+            this.button1.Click += new System.EventHandler(this.StartEquationRender);
             // 
             // panel1
             // 
@@ -451,7 +451,7 @@
             this.GreekLetterBut.TabIndex = 33;
             this.GreekLetterBut.Text = "Open Greek Symbol List";
             this.GreekLetterBut.UseVisualStyleBackColor = true;
-            this.GreekLetterBut.Click += new System.EventHandler(this.button2_Click);
+            this.GreekLetterBut.Click += new System.EventHandler(this.OpenGreekSymbolList);
             // 
             // button3
             // 
