@@ -239,7 +239,7 @@ namespace Uncertainty_Propagation_Calculator{
                     throw new Exception("one of the aliases were longer than one character");
                 }
                 if (reference.Key == "l" || reference.Key == "o" || reference.Key == "g" || reference.Key == "n"){
-                    throw new Exception("cannot use letters l, o, g, or n");
+                    //throw new Exception("cannot use letters l, o, g, or n");
                 }
             }
             return aliasEquation;
