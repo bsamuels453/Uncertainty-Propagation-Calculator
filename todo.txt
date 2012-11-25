@@ -1,6 +1,5 @@
 -fix ln/logs in PlugIntoEquationAndSolve()
 -output images
--validation for keys
 -xml validation
 -significant digits
 -reset button
@@ -8,6 +7,7 @@
 -latex input format
 -latex output format
 -output text stuff with images
+-error output for wolfram
 
 cleanliness stuff
 -clean up uncertaintycalculator.cs's for loops
