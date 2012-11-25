@@ -41,7 +41,7 @@ namespace Uncertainty_Propagation_Calculator{
             StatusUpdate("Beginning wolfram alpha queries");
             int si = 0;
             foreach (var reference in symbolAliases) {
-                StatusUpdate("Sending query " + si + " of " + symbolAliases.Count+"...");
+                StatusUpdate("Sending query " + si+1 + " of " + symbolAliases.Count+"...");
                 partialDerivs[si] = _wolframEval.CalculatePartialDeriv(aliasEquation, reference.Value[0]);
                 dependentVariables[si] = reference.Value[0];
                 si++;
