@@ -2,9 +2,6 @@
 -output images
 -validation for keys
 -xml validation
--status output
--moving progressbar
--calculation stuff on a forked thread
 -significant digits
 -reset button
 -normal output format 
