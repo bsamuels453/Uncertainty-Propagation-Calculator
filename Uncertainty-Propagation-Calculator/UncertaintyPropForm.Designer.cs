@@ -49,7 +49,6 @@
             this.GenEqImagesChkBox = new System.Windows.Forms.CheckBox();
             this.CheckValidityBut = new System.Windows.Forms.Button();
             this.SaveKeyBut = new System.Windows.Forms.Button();
-            this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.GetKeyBut = new System.Windows.Forms.Button();
             this.DataInputErrLabel = new System.Windows.Forms.Label();
             this.KeyValidityLabel = new System.Windows.Forms.Label();
@@ -364,13 +363,6 @@
             this.SaveKeyBut.UseVisualStyleBackColor = true;
             this.SaveKeyBut.Click += new System.EventHandler(this.SaveApiKey);
             // 
-            // ProgressBar
-            // 
-            this.ProgressBar.Location = new System.Drawing.Point(574, 318);
-            this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(184, 23);
-            this.ProgressBar.TabIndex = 21;
-            // 
             // GetKeyBut
             // 
             this.GetKeyBut.Location = new System.Drawing.Point(356, 23);
@@ -476,7 +468,6 @@
             this.Controls.Add(this.KeyValidityLabel);
             this.Controls.Add(this.DataInputErrLabel);
             this.Controls.Add(this.GetKeyBut);
-            this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.SaveKeyBut);
             this.Controls.Add(this.CheckValidityBut);
             this.Controls.Add(this.GenEqImagesChkBox);
@@ -532,7 +523,6 @@
         private System.Windows.Forms.CheckBox GenEqImagesChkBox;
         private System.Windows.Forms.Button CheckValidityBut;
         private System.Windows.Forms.Button SaveKeyBut;
-        private System.Windows.Forms.ProgressBar ProgressBar;
         private System.Windows.Forms.Button GetKeyBut;
         private System.Windows.Forms.Label DataInputErrLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn VariableName;
