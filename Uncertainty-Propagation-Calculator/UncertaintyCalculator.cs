@@ -153,9 +153,10 @@ namespace Uncertainty_Propagation_Calculator{
                 output.PropEquation = "size 16{" + propogationStr + "=" + sUncertain + "}";
             }
             else{
-                output.PropEquation = "{" + propogationStr + "=" + sUncertain + "}";
+                output.PropEquation = "${" + propogationStr + "=" + sUncertain + "}$";
                 output.PropEquation = output.PropEquation.Replace("δ", @"\delta ");
                 output.PropEquation = output.PropEquation.Replace("∂", @"\partial ");
+                output.PropEquation = output.PropEquation.Replace("sqrt", @"\sqrt ");
             }
             output.Result = sUncertain;
 
