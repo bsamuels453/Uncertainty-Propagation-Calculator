@@ -190,7 +190,6 @@
             // OutputFmtDropdown
             // 
             this.OutputFmtDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.OutputFmtDropdown.Enabled = true;
             this.OutputFmtDropdown.FormattingEnabled = true;
             this.OutputFmtDropdown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.OutputFmtDropdown.Items.AddRange(new object[] {
@@ -213,6 +212,7 @@
             // 
             // OpenOutputImageLocBut
             // 
+            this.OpenOutputImageLocBut.Enabled = false;
             this.OpenOutputImageLocBut.Location = new System.Drawing.Point(384, 143);
             this.OpenOutputImageLocBut.Name = "OpenOutputImageLocBut";
             this.OpenOutputImageLocBut.Size = new System.Drawing.Size(185, 39);
@@ -410,12 +410,14 @@
             // 
             // RenderEquationBut
             // 
+            this.RenderEquationBut.Enabled = false;
             this.RenderEquationBut.Location = new System.Drawing.Point(11, 130);
             this.RenderEquationBut.Name = "RenderEquationBut";
             this.RenderEquationBut.Size = new System.Drawing.Size(118, 23);
             this.RenderEquationBut.TabIndex = 31;
             this.RenderEquationBut.Text = "Render Equation";
             this.RenderEquationBut.UseVisualStyleBackColor = true;
+            this.RenderEquationBut.Visible = false;
             this.RenderEquationBut.Click += new System.EventHandler(this.StartEquationRender);
             // 
             // panel1
@@ -435,6 +437,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // GreekLetterBut
             // 

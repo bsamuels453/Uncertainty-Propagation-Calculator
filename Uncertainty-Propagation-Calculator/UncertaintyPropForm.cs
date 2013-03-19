@@ -84,7 +84,7 @@ namespace Uncertainty_Propagation_Calculator{
 
         void StartEquationRender(object sender, EventArgs e){
             string s = LatexConverter.ToLatex(EquationEntryTextBox.Text);
-            _latexConverter.QueueNewUpdate(s);
+            //_latexConverter.QueueNewUpdate(s); //feature disabled for now
         }
 
         void StartPropagationCalculation(object sender, EventArgs e){
