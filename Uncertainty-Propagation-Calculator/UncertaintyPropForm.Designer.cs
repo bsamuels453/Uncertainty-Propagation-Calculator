@@ -219,6 +219,7 @@
             this.OpenOutputImageLocBut.TabIndex = 13;
             this.OpenOutputImageLocBut.Text = "Open Output Image Location";
             this.OpenOutputImageLocBut.UseVisualStyleBackColor = true;
+            this.OpenOutputImageLocBut.Visible = false;
             this.OpenOutputImageLocBut.Click += new System.EventHandler(this.OpenOutputImageDirectory);
             // 
             // PartialDerivsGrid
