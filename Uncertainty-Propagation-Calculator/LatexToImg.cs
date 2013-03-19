@@ -78,7 +78,7 @@ namespace Uncertainty_Propagation_Calculator{
                 processStartInfo.FileName = _pathToDirectory + "pdflatex.exe";
                 processStartInfo.Arguments = _pathToDirectory + "formula.tex";
                 processStartInfo.WorkingDirectory = _pathToDirectory;
-                processStartInfo.RedirectStandardOutput = true;
+                //processStartInfo.RedirectStandardOutput = true;
                 processStartInfo.UseShellExecute = false;
 
                 var process = Process.Start(processStartInfo);

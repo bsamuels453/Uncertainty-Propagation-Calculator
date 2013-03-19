@@ -116,6 +116,9 @@ namespace Uncertainty_Propagation_Calculator{
                 }
             }
 
+            bool useLibre = !(OutputFmtDropdown.Text == "LaTeX");
+            input.UseLibreConverter = useLibre;
+
             _calculateTask = new Task(_calculator.Calculate, input);
             _calculateTask.Start();
             //_calculator.Calculate(input);

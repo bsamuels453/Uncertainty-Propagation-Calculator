@@ -98,6 +98,7 @@
             this.VariableEntryGrid.MultiSelect = false;
             this.VariableEntryGrid.Name = "VariableEntryGrid";
             this.VariableEntryGrid.RowHeadersWidth = 30;
+            this.VariableEntryGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.VariableEntryGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.VariableEntryGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.VariableEntryGrid.ShowEditingIcon = false;
@@ -189,12 +190,11 @@
             // OutputFmtDropdown
             // 
             this.OutputFmtDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.OutputFmtDropdown.Enabled = false;
+            this.OutputFmtDropdown.Enabled = true;
             this.OutputFmtDropdown.FormattingEnabled = true;
             this.OutputFmtDropdown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.OutputFmtDropdown.Items.AddRange(new object[] {
             "LibreMath",
-            "Normal",
             "LaTeX"});
             this.OutputFmtDropdown.Location = new System.Drawing.Point(389, 271);
             this.OutputFmtDropdown.Name = "OutputFmtDropdown";

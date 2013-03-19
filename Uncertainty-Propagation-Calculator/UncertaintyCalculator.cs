@@ -87,7 +87,12 @@ namespace Uncertainty_Propagation_Calculator{
             string[] librePartialDerivs = new string[symbolAliases.Count];
 
             for (int i = 0; i < symbolAliases.Count; i++) {
-                librePartialDerivs[i] = LibreMathConverter.EquationToLibre(partialDerivs[i]);
+                if (input.UseLibreConverter) {
+                    librePartialDerivs[i] = LibreMathConverter.EquationToLibre(partialDerivs[i]);
+                }
+                else{
+                    librePartialDerivs[i] = LatexConverter.ToLatex(partialDerivs[i]);
+                }
             }
 
             output.PartialDerivs = librePartialDerivs;
@@ -102,7 +107,13 @@ namespace Uncertainty_Propagation_Calculator{
             PlugIntoEquationAndSolve(partialDerivs, symbolValues, out output.PluggedPartialDerivs, out partialSolutions);
 
             for (int i = 0; i < partialDerivs.Length; i++) {
-                output.PluggedPartialDerivs[i] = LibreMathConverter.EquationToLibre(output.PluggedPartialDerivs[i]);
+                
+                if (input.UseLibreConverter) {
+                    output.PluggedPartialDerivs[i] = LibreMathConverter.EquationToLibre(output.PluggedPartialDerivs[i]);
+                }
+                else {
+                    output.PluggedPartialDerivs[i] = LatexConverter.ToLatex(output.PluggedPartialDerivs[i]);
+                }
             }
 
             string propogationStr = "δ" + leftSide.Substring(0, leftSide.Count() - 1);
@@ -138,12 +149,30 @@ namespace Uncertainty_Propagation_Calculator{
 
             string sUncertain = uncertainty.ToString();
 
-            output.PropEquation ="size 16{" + propogationStr + "=" + sUncertain + "}";
+            if (input.UseLibreConverter) {
+                output.PropEquation = "size 16{" + propogationStr + "=" + sUncertain + "}";
+            }
+            else{
+                output.PropEquation = "{" + propogationStr + "=" + sUncertain + "}";
+                output.PropEquation = output.PropEquation.Replace("δ", @"\delta ");
+                output.PropEquation = output.PropEquation.Replace("∂", @"\partial ");
+            }
             output.Result = sUncertain;
 
             for (int i = 0; i < partialSolutions.Count(); i++){
-                output.PartialDerivs[i] = "size 16{" + output.PartialDerivs[i] + "}";
-                output.PluggedPartialDerivs[i] = "size 16{" + output.PluggedPartialDerivs[i] + "}";
+                if (input.UseLibreConverter) {
+                    output.PartialDerivs[i] = "size 16{" + output.PartialDerivs[i] + "}";
+                    output.PluggedPartialDerivs[i] = "size 16{" + output.PluggedPartialDerivs[i] + "}";
+                }
+                else {
+                    output.PartialDerivs[i] = "{" + output.PartialDerivs[i] + "}";
+                    output.PluggedPartialDerivs[i] = "{" + output.PluggedPartialDerivs[i] + "}";
+                    output.PartialDerivs[i] = output.PartialDerivs[i].Replace("δ", @"\delta ");
+                    output.PluggedPartialDerivs[i] = output.PluggedPartialDerivs[i].Replace("δ", @"\delta ");
+                    output.PartialDerivs[i] = output.PartialDerivs[i].Replace("∂", @"\partial ");
+                    output.PluggedPartialDerivs[i] = output.PluggedPartialDerivs[i].Replace("∂", @"\partial ");
+                }
+
             }
             StatusUpdate("Calculation complete");
             if (_onComplete != null){
@@ -203,8 +232,13 @@ namespace Uncertainty_Propagation_Calculator{
                 }
 
 
-                var e = new Expression(toEval, EvaluateOptions.None);
-                solutions[i] = e.Evaluate().ToString();
+                if (toEval != "") {
+                    var e = new Expression(toEval, EvaluateOptions.None);
+                    solutions[i] = e.Evaluate().ToString();
+                }
+                else{
+                    solutions[i] = "0";
+                }
 
                 //FIX THIS TO USE SIGFIGS
                 /*
@@ -231,6 +265,7 @@ namespace Uncertainty_Propagation_Calculator{
         }
 
         public struct UncertCalcInput{
+            public bool UseLibreConverter;
             public string Equation;
             public List<string> VariableNames;
             public List<string> VariableValues;
